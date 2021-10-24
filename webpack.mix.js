@@ -22,6 +22,7 @@ mix.js('resources/js/app.js', 'public/js')
         proxy: '127.0.0.1:8000',
         notify: false
     })
+    .sourceMaps()
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {
