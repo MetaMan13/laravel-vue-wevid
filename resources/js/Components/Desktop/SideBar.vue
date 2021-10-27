@@ -1,8 +1,8 @@
 <template>
-    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min lg:h-screen lg:z-40 lg:pt-16 lg:px-4">
+    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min lg:h-screen lg:z-40 lg:pt-16 lg:pb-4 lg:px-4">
 
         <!-- Side Bar Display Toggle button -->
-        <div class="absolute -right-3.5 bg-white hover:bg-green-500 hover:text-white py-1 px-1 rounded-full z-40 border border-gray-200">
+        <div class="absolute -right-4 bg-white hover:bg-green-500 hover:text-white py-1 px-1 rounded-full z-40 border border-gray-200">
             <template v-if="sideBarMenuOpen">
                 <arrow-left
                     @click="closeSideBar"
@@ -24,20 +24,53 @@
         </div>
 
         <!-- Side Bar Content -->
-        <div>
-            <p>Side Bar Content</p>
+        <div class="bg-red-100 h-full">
+
+            <!-- Side Menu Links -->
+            <div>
+                <ul>
+                    <li>
+                        <side-bar-link :href="route('dashboard')">
+                            <home
+                            :height="20"
+                            :width="20"
+                            >
+                            </home>
+                        </side-bar-link>
+                    </li>
+
+                    <li>
+                        <side-bar-link :href="'dashboard/test'">
+                            <home
+                            :height="20"
+                            :width="20"
+                            >
+                            </home>
+                        </side-bar-link>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- User Information -->
+            <div>
+
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 
+import SideBarLink from '../Desktop/SideBarLink.vue'
 import ArrowLeft from '../Icons/ArrowLeft.vue'
+import Home from '../Icons/Home.vue'
 
 export default {
     name: 'SideBar',
     components: {
         ArrowLeft,
+        Home,
+        SideBarLink
     },
     data(){
         return{

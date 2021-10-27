@@ -13,8 +13,7 @@
         <side-bar @sideBarOpen="sideBarOpen" @sideBarClosed="sideBarClosed"></side-bar>
 
         <!-- Content START -->
-        <div v-bind:class="{'lg:ml-56 xl:ml-60': sideBarMenuOpen, 'lg:ml-24 xl:ml-24' : !sideBarMenuOpen }" class="pb-12 pt-12 lg:px-6">
-            <p>Content</p>
+        <div v-bind:class="{'lg:ml-56 xl:ml-60': sideBarMenuOpen, 'lg:ml-24 xl:ml-24' : !sideBarMenuOpen }" class="pb-12 pt-12 lg:px-4 lg:pb-0 lg:pt-16 lg:pb-4">
             <div class="w-full bg-yellow-100 h-screen">
                 <p>Some yellow lemmon tree</p>
             </div>
