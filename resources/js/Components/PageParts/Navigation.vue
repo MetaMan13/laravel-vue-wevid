@@ -1,7 +1,7 @@
 <template>
 
     <!-- Desktop Navigation START -->
-    <div class="fixed top-0 left-0 z-50 w-full h-12 bg-white px-2 flex items-center justify-between border-b border-gray-200">
+    <div class="fixed top-0 left-0 z-50 w-full h-12 bg-white px-2 flex items-center justify-between border-b border-gray-200 md:px-4 lg:bg-green-100 xl:bg-green-300 2xl:bg-green-500">
 
         <!-- Logo START -->
         <div class="flex gap-1 items-center">
@@ -11,7 +11,7 @@
             class="text-green-500 transform -rotate-90"
             >
             </feather>
-            <h3 class="text-green-500 font-semibold text-lg">Wevid</h3>
+            <h3 class="font-semibold text-lg">Wevid</h3>
         </div>
         <!-- Logo END -->
 

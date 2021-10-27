@@ -1,7 +1,7 @@
 <template>
 
     <!-- Mobile User Action Bar START -->
-    <div class="fixed bottom-0 left-0 z-40 h-12 w-full flex justify-between items-center px-4 bg-white border-t border-gray-200">
+    <div class="fixed bottom-0 left-0 z-40 h-12 w-full flex justify-between items-center px-4 bg-white border-t border-gray-200 md:px-4 lg:hidden">
 
             <!-- Menu items START -->
             <div>
