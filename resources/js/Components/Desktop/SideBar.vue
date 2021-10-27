@@ -4,11 +4,12 @@
         <!-- Side Bar Menu Action Buttons -->
         <div v-bind:class="{ 'flex-col gap-2 items-center' : !sideBarMenuOpen }" class="w-full flex justify-between pb-4 border-b border-gray-200">
 
+            <!-- Darkmode toggle -->
             <template v-if="darkTheme">
                 <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
                     <sun
-                    :height="20"
-                    :width="20"
+                    :height="18"
+                    :width="18"
                     >
                     </sun>
                 </div>
@@ -17,8 +18,8 @@
             <template v-else>
                 <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
                     <moon
-                    :height="20"
-                    :width="20"
+                    :height="18"
+                    :width="18"
                     >
                     </moon>
                 </div>
@@ -29,8 +30,8 @@
                 <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
                     <minimize
                         @click="closeSideBar"
-                        :height="20" 
-                        :width="20"
+                        :height="18" 
+                        :width="18"
                         class="transform rotate-45"
                         >
                     </minimize>
@@ -41,8 +42,8 @@
                 <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
                     <maximize
                         @click="openSideBar"
-                        :height="20" 
-                        :width="20"
+                        :height="18" 
+                        :width="18"
                         class="transform rotate-45"
                         >
                     </maximize>
@@ -52,7 +53,6 @@
 
         <!-- Side Bar Content -->
         <div class="mt-4">
-
             <!-- Side Menu Links -->
             <div>
                 <ul v-bind:class="{'items-center' : !sideBarMenuOpen }" class="flex flex-col">
@@ -63,8 +63,8 @@
                             >
                             <template v-slot:icon>
                                 <home
-                                :height="20"
-                                :width="20"
+                                :height="18"
+                                :width="18"
                                 >
                                 </home>
                             </template>
@@ -80,9 +80,27 @@
                             :sideBarMenuOpen="sideBarMenuOpen"
                             >
                             <template v-slot:icon>
+                                <user
+                                :height="18"
+                                :width="18"
+                                >
+                                </user>
+                            </template>
+                            <template v-slot:text>
+                                <p>Profile</p>
+                            </template>
+                        </side-bar-link>
+                    </li>
+
+                    <li>
+                        <side-bar-link 
+                            :href="'/dashboard/test'"
+                            :sideBarMenuOpen="sideBarMenuOpen"
+                            >
+                            <template v-slot:icon>
                                 <settings
-                                :height="20"
-                                :width="20"
+                                :height="18"
+                                :width="18"
                                 >
                                 </settings>
                             </template>
@@ -92,14 +110,27 @@
                         </side-bar-link>
                     </li>
 
+                    <li>
+                        <side-bar-link 
+                            :href="'/dashboard/test'"
+                            :sideBarMenuOpen="sideBarMenuOpen"
+                            >
+                            <template v-slot:icon>
+                                <log-out
+                                :height="18"
+                                :width="18"
+                                >
+                                </log-out>
+                            </template>
+                            <template v-slot:text>
+                                <p>Log out</p>
+                            </template>
+                        </side-bar-link>
+                    </li>
                 </ul>
             </div>
-
-            <!-- User Information -->
-            <div>
-
-            </div>
         </div>
+
     </div>
 </template>
 
@@ -112,6 +143,8 @@ import Moon from '../Icons/Moon.vue'
 import Settings from '../Icons/Settings.vue'
 import Maximize from '../Icons/Maximize.vue'
 import Minimize from '../Icons/Minimize.vue'
+import LogOut from '../Icons/LogOut.vue'
+import User from '../Icons/User.vue'
 
 export default {
     name: 'SideBar',
@@ -123,6 +156,8 @@ export default {
         Settings,
         Maximize,
         Minimize,
+        LogOut,
+        User,
     },
     data(){
         return{
