@@ -3,7 +3,7 @@
         <div class="flex items-center w-auto">
             <slot name="icon"></slot>
         </div>
-        <div v-show="sideBarMenuOpen" class="flex justify-start items-end pt-0.5 w-full">
+        <div v-show="sideBarMenuOpen" class="flex justify-start items-end pt-0.5 w-full break-all">
             <slot name="text"></slot>
         </div>
     </Link>

@@ -1,8 +1,8 @@
 <template>
-    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min lg:h-screen lg:z-40 lg:pt-16 lg:pb-4 lg:px-4">
+    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-scroll lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min lg:h-screen lg:max-h-auto bg-red-300 lg:z-40 lg:pt-16 lg:pb-4 lg:px-4">
 
         <!-- Side Bar Display Toggle button -->
-        <div class="absolute -right-4 bg-white hover:bg-green-500 hover:text-white py-1 px-1 rounded-full z-40 border border-gray-200">
+        <!-- <div class="bg-white hover:bg-green-500 hover:text-white py-1 px-1 rounded-full z-40 border border-gray-200">
             <template v-if="sideBarMenuOpen">
                 <arrow-left
                     @click="closeSideBar"
@@ -21,10 +21,23 @@
                     >
                 </arrow-left>
             </template>
+        </div> -->
+
+        <!-- Side Bar Menu Action Buttons -->
+        <div class="bg-red-200 w-full py-2">
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <p>jasjdajsdj</p>
+            <div class="h-screen bg-green-300"></div>
         </div>
 
         <!-- Side Bar Content -->
-        <div class="h-full">
+        <div class="h-full mt-4">
 
             <!-- Side Menu Links -->
             <div>
@@ -49,7 +62,7 @@
 
                     <li>
                         <side-bar-link 
-                            :href="route('dashboard')"
+                            :href="'/dashboard/test'"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             >
                             <template v-slot:icon>
@@ -60,7 +73,7 @@
                                 </home>
                             </template>
                             <template v-slot:text>
-                                <p>Dashboardingskat</p>
+                                <p>Dashboardingskatjkasjkdjhkasjk</p>
                             </template>
                         </side-bar-link>
                     </li>
