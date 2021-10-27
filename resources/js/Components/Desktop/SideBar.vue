@@ -24,30 +24,47 @@
         </div>
 
         <!-- Side Bar Content -->
-        <div class="bg-red-100 h-full">
+        <div class="h-full">
 
             <!-- Side Menu Links -->
             <div>
                 <ul>
                     <li>
-                        <side-bar-link :href="route('dashboard')">
-                            <home
-                            :height="20"
-                            :width="20"
+                        <side-bar-link 
+                            :href="route('dashboard')"
+                            :sideBarMenuOpen="sideBarMenuOpen"
                             >
-                            </home>
+                            <template v-slot:icon>
+                                <home
+                                :height="22"
+                                :width="22"
+                                >
+                                </home>
+                            </template>
+                            <template v-slot:text>
+                                <p>Home</p>
+                            </template>
                         </side-bar-link>
                     </li>
 
                     <li>
-                        <side-bar-link :href="'dashboard/test'">
-                            <home
-                            :height="20"
-                            :width="20"
+                        <side-bar-link 
+                            :href="route('dashboard')"
+                            :sideBarMenuOpen="sideBarMenuOpen"
                             >
-                            </home>
+                            <template v-slot:icon>
+                                <home
+                                :height="22"
+                                :width="22"
+                                >
+                                </home>
+                            </template>
+                            <template v-slot:text>
+                                <p>Dashboardingskat</p>
+                            </template>
                         </side-bar-link>
                     </li>
+
                 </ul>
             </div>
 
