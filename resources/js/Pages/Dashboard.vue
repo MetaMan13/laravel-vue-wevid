@@ -10,10 +10,10 @@
         <user-action-bar></user-action-bar>
 
         <!-- Desktop Side Bar -->
-        <side-bar></side-bar>
+        <side-bar @sideBarOpen="sideBarOpen" @sideBarClosed="sideBarClosed"></side-bar>
 
         <!-- Content START -->
-        <div class="pb-12 pt-12 lg:ml-52 lg:px-6">
+        <div v-bind:class="{'lg:ml-56 xl:ml-60': sideBarMenuOpen, 'lg:ml-24 xl:ml-24' : !sideBarMenuOpen }" class="pb-12 pt-12 lg:px-6">
             <p>Content</p>
             <div class="w-full bg-yellow-100 h-screen">
                 <p>Some yellow lemmon tree</p>
@@ -48,6 +48,15 @@ export default {
     data(){
         return{
             hamburgerMenuOpen: false,
+            sideBarMenuOpen: true,
+        }
+    },
+    methods: {
+        sideBarOpen(){
+            this.sideBarMenuOpen = true
+        },
+        sideBarClosed(){
+            this.sideBarMenuOpen = false
         }
     }
 }
