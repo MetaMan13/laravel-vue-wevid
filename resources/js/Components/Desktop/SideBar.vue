@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-scroll lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min lg:h-screen lg:max-h-auto bg-red-300 lg:z-40 lg:pt-16 lg:pb-4 lg:px-4">
+    <div v-bind:class="{ 'lg:w-56 xl:w-60': sideBarMenuOpen, 'lg:w-24' : !sideBarMenuOpen }" class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-scroll lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min dynamic-h-screen lg:max-h-auto bg-red-300 lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4">
 
         <!-- Side Bar Display Toggle button -->
         <!-- <div class="bg-white hover:bg-green-500 hover:text-white py-1 px-1 rounded-full z-40 border border-gray-200">
@@ -25,15 +25,7 @@
 
         <!-- Side Bar Menu Action Buttons -->
         <div class="bg-red-200 w-full py-2">
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <p>jasjdajsdj</p>
-            <div class="h-screen bg-green-300"></div>
+            <p>ajsdjasjdjasjdasj</p>
         </div>
 
         <!-- Side Bar Content -->
