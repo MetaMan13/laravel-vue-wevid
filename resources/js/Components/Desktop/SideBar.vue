@@ -58,6 +58,7 @@
                         <side-bar-link 
                             :href="route('dashboard')"
                             :sideBarMenuOpen="sideBarMenuOpen"
+                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard'}"
                             >
                             <template v-slot:icon>
                                 <home
@@ -76,6 +77,7 @@
                         <side-bar-link 
                             :href="route('dashboard.video.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
+                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/video'}"
                             >
                             <template v-slot:icon>
                                 <video-icon
@@ -94,6 +96,7 @@
                         <side-bar-link 
                             :href="route('dashboard.profile.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
+                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/profile'}"
                             >
                             <template v-slot:icon>
                                 <user
@@ -112,6 +115,7 @@
                         <side-bar-link 
                             :href="route('dashboard.settings.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
+                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/settings'}"
                             >
                             <template v-slot:icon>
                                 <settings
@@ -131,6 +135,9 @@
                             :href="route('logout')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :method="'post'"
+                            as="button"
+                            type="button"
+                            class="w-full"
                             >
                             <template v-slot:icon>
                                 <log-out
