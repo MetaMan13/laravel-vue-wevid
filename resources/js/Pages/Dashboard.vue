@@ -1,7 +1,7 @@
 <template>
 
     <!-- Root main layout wrapper -->
-    <div class="min-h-screen w-full bg-gray-50 text-gray-700">
+    <div class="min-h-screen w-full bg-gray-50 text-gray-700 dark dark:bg-gray-900">
 
         <!-- Navigation -->
         <navigation></navigation>
@@ -14,16 +14,8 @@
 
         <!-- Content START -->
         <div v-bind:class="{'lg:ml-56 xl:ml-60': sideBarMenuOpen, 'lg:ml-24 xl:ml-24' : !sideBarMenuOpen }" class="pb-12 pt-12 lg:px-4 lg:pb-0 lg:pt-16 lg:pb-4">
-            <div class="w-full bg-white h-screen">
-                <p>Content Area</p>
-            </div>
-            <div class="h-screen w-full">
-                <form action="">
-                    
-                </form>
-            </div>
-            <div class="h-screen w-full bg-yellow-400 flex flex-col justify-end">
-                <p>asdas</p>
+            <div class="w-full bg-white h-full">
+                <slot></slot>
             </div>
         </div>
         <!-- Content END -->

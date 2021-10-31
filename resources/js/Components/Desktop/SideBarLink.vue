@@ -1,5 +1,5 @@
 <template>
-    <Link :href="href" class="bg-white hover:bg-green-500 hover:text-white font-semibold flex flex-row items-center justify-center gap-2 px-2 py-2 mb-2 rounded-md text-sm border border-gray-200 shadow-sm transition-all duration-150 ease-in-out">
+    <Link :href="href" :method="method" class="bg-white hover:bg-gray-50 font-semibold flex flex-row items-center justify-center gap-2 px-2 py-2 mb-2 rounded-md text-sm border border-gray-200 shadow-sm transition-all duration-150 ease-in-out">
         <div class="flex items-center w-auto">
             <slot name="icon"></slot>
         </div>
@@ -21,6 +21,10 @@ export default {
     props: {
         href: String,
         sideBarMenuOpen: Boolean,
+        method: {
+            type: String,
+            default: 'get',
+        }
     }
 }
 </script>

@@ -8,6 +8,8 @@ module.exports = {
         './resources/js/**/*.vue',
     ],
 
+    darkMode: 'class',
+
     theme: {
         extend: {
             fontFamily: {
@@ -19,8 +21,12 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            backdropBlur: ['hover', 'focus'],
+            backdropFilter: ['hover', 'focus'],
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+    ],
 };

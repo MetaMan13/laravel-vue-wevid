@@ -28,9 +28,19 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/test', function()
+Route::get('/dashboard/video', function()
 {
-    return Inertia::render('Dashboard');
-});
+    return Inertia::render('Video');
+})->name('dashboard.video.index');
+
+Route::get('/dashboard/profile', function()
+{
+    return Inertia::render('Profile');
+})->name('dashboard.profile.index');
+
+Route::get('/dashboard/settings', function()
+{
+    return Inertia::render('Settings');
+})->name('dashboard.settings.index');
 
 require __DIR__.'/auth.php';

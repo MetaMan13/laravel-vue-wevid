@@ -6,7 +6,7 @@
 
             <!-- Darkmode toggle -->
             <template v-if="darkTheme">
-                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
+                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer">
                     <sun
                     :height="18"
                     :width="18"
@@ -16,7 +16,7 @@
             </template>
 
             <template v-else>
-                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
+                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer">
                     <moon
                     :height="18"
                     :width="18"
@@ -27,9 +27,8 @@
 
             <!-- Display, close arrows -->
             <template v-if="sideBarMenuOpen">
-                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
+                <div @click="closeSideBar" class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer">
                     <minimize
-                        @click="closeSideBar"
                         :height="18" 
                         :width="18"
                         class="transform rotate-45"
@@ -39,9 +38,8 @@
             </template>
 
             <template v-else>
-                <div class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-green-500 hover:text-white">
+                <div @click="openSideBar" class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer">
                     <maximize
-                        @click="openSideBar"
                         :height="18" 
                         :width="18"
                         class="transform rotate-45"
@@ -76,7 +74,25 @@
 
                     <li>
                         <side-bar-link 
-                            :href="'/dashboard/test'"
+                            :href="route('dashboard.video.index')"
+                            :sideBarMenuOpen="sideBarMenuOpen"
+                            >
+                            <template v-slot:icon>
+                                <video-icon
+                                :height="18"
+                                :width="18"
+                                >
+                                </video-icon>
+                            </template>
+                            <template v-slot:text>
+                                <p>Videos</p>
+                            </template>
+                        </side-bar-link>
+                    </li>
+
+                    <li>
+                        <side-bar-link 
+                            :href="route('dashboard.profile.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             >
                             <template v-slot:icon>
@@ -94,7 +110,7 @@
 
                     <li>
                         <side-bar-link 
-                            :href="'/dashboard/test'"
+                            :href="route('dashboard.settings.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             >
                             <template v-slot:icon>
@@ -112,8 +128,9 @@
 
                     <li>
                         <side-bar-link 
-                            :href="'/dashboard/test'"
+                            :href="route('logout')"
                             :sideBarMenuOpen="sideBarMenuOpen"
+                            :method="'post'"
                             >
                             <template v-slot:icon>
                                 <log-out
@@ -145,6 +162,7 @@ import Maximize from '../Icons/Maximize.vue'
 import Minimize from '../Icons/Minimize.vue'
 import LogOut from '../Icons/LogOut.vue'
 import User from '../Icons/User.vue'
+import VideoIcon from '../Icons/VideoIcon.vue'
 
 export default {
     name: 'SideBar',
@@ -158,6 +176,7 @@ export default {
         Minimize,
         LogOut,
         User,
+        VideoIcon,
     },
     data(){
         return{
