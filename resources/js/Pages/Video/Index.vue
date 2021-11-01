@@ -2,6 +2,10 @@
     <div>
         <p>Video INDEX</p>
         <Link :href="route('dashboard.videos.create')">Create</Link>
+
+        <div v-if="$page.props.flash.message">
+            {{ $page.props.flash.message }}
+        </div>
     </div>
 </template>
 
