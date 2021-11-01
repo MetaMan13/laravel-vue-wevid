@@ -75,9 +75,9 @@
 
                     <li>
                         <side-bar-link 
-                            :href="route('dashboard.video.index')"
+                            :href="route('dashboard.videos.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
-                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/video'}"
+                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url.startsWith('/dashboard/videos')}"
                             >
                             <template v-slot:icon>
                                 <video-icon

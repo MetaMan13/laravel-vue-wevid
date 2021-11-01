@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +29,31 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/video', function()
-{
-    return Inertia::render('Video');
-})->name('dashboard.video.index');
+// Route::get('/dashboard/video', function()
+// {
+//     return Inertia::render('Video');
+// })->name('dashboard.video.index');
+
+/*
+    Dashboard Video Routes || START
+*/
+
+    Route::prefix('/dashboard/videos')
+        ->middleware(['auth'])
+        ->group(function()
+        {
+            Route::get('/', [VideoController::class, 'index'])->name('dashboard.videos.index');
+            Route::post('/', [VideoController::class, 'store'])->name('dashboard.videos.store');
+            Route::get('/create', [VideoController::class, 'create'])->name('dashboard.videos.create');
+            Route::get('/{video}', [VideoController::class, 'show'])->name('dashboard.videos.show');
+            Route::patch('/{video}', [VideoController::class, 'update'])->name('dashboard.videos.update');
+            Route::delete('/{video}', [VideoController::class, 'destroy'])->name('dashboard.videos.destroy');
+            Route::get('/{video}/edit', [VideoController::class, 'edit'])->name('dashboard.videos.edit');
+        });
+
+/*
+    Dashboard Video Routes || END
+*/
 
 Route::get('/dashboard/profile', function()
 {
