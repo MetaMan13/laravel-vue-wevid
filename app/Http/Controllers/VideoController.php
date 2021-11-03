@@ -43,9 +43,11 @@ class VideoController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $fileName = Str::random(8) . '.' . $request->file('file')->extension();
-        $path = storage_path('public/');
-        Storage::putFileAs('public/', $request->file('file'), $fileName);
+        // $fileName = Str::random(8) . '.' . $request->file('file')->extension();
+        // $path = storage_path('public/');
+        // Storage::putFileAs('public/', $request->file('file'), $fileName);
+        $fileName = Str::random(8) . '.' . 'mp4';
+
         $thumbnailName = Str::random(8);
         $thumbnailPath = base_path('storage/app/public/');
         $ffmpeg = FFMpeg::create();
@@ -57,14 +59,14 @@ class VideoController extends Controller
         $video
             ->frame(TimeCode::fromSeconds(10))
             ->save($thumbnailPath . $thumbnailName . '.jpg');
-        // $video
-            // ->save(new X264(), 'export-x264.mp4');
+        $video
+            ->save(new X264(), $thumbnailPath . $fileName);
             // ->save(new WMV(), 'export-wmv.wmv')
             // ->save(new WebM(), 'export-webm.webm');
 
         $data = collect($request->validated())
             ->merge([
-                'path' => $path,
+                'path' => $thumbnailPath,
                 'file_name' => $fileName,
                 'user_id' => $request->user()->id
             ])
@@ -89,7 +91,40 @@ class VideoController extends Controller
 
     public function update(UpdateRequest $request, Video $video)
     {
-        $video->update($request->validated());
+        $data = $request->validated();
+
+        if($request->file('file'))
+        {
+            // $fileName = Str::random(8) . '.' . $request->file('file')->extension();
+            // $path = storage_path('public/');
+            // Storage::putFileAs('public/', $request->file('file'), $fileName);
+            $fileName = Str::random(8) . '.' . 'mp4';
+
+            $thumbnailName = Str::random(8);
+            $thumbnailPath = base_path('storage/app/public/');
+            $ffmpeg = FFMpeg::create();
+            $videoFile = $ffmpeg->open($request->file('file'));
+            $videoFile
+                ->filters()
+                ->resize(new Dimension(320, 240))
+                ->synchronize();
+            $videoFile
+                ->frame(TimeCode::fromSeconds(10))
+                ->save($thumbnailPath . $thumbnailName . '.jpg');
+            $videoFile
+                ->save(new X264(), $thumbnailPath . $fileName);
+                // ->save(new WMV(), 'export-wmv.wmv')
+                // ->save(new WebM(), 'export-webm.webm');
+
+            $data = collect($request->validated())
+                ->merge([
+                    'path' => $thumbnailPath,
+                    'file_name' => $fileName,
+                ])
+                ->all();
+        }
+
+        $video->update($data);
 
         return redirect()->route('dashboard.videos.index')->with('message', 'Video updated!');
     }

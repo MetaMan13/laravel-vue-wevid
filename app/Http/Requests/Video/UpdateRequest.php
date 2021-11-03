@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'title' => 'bail|required|min:3|max:100',
-            'file' => 'nullable|mimes:mp4,mov,ogg,qt|max:40000'
+            'file' => 'nullable|mimes:mp4,mov,ogg,qt|max:1000000'
         ];
     }
 
