@@ -20,7 +20,8 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .browserSync({
         proxy: '127.0.0.1:8000',
-        notify: false
+        notify: false,
+        open: false,
     })
     .sourceMaps()
     .webpackConfig(require('./webpack.config'));

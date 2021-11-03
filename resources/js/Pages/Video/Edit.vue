@@ -13,5 +13,8 @@ export default {
     components: {
 
     },
+    props: {
+        video: Object,
+    },
 }
 </script>

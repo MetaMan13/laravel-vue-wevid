@@ -13,7 +13,7 @@ class EditRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->id === $this->video->user_id;
     }
 
     /**

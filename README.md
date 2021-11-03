@@ -1,20 +1,17 @@
 # Laravel, Inertia ( Vue3 ), Tailwind CSS
 
-## App Prototyping
+## Additional packages
 
-    1. User
+1. composer require php-ffmpeg/php-ffmpeg
 
-        1. User to User actions
+Video upload process
 
-            - Can follow a user
-            - Can block a user
-            - Can chat with a user
-            - Can like/dislike other users video
-            - Can comment on other users video
+fill out form ( don't let submit until data is set )
 
-        2. User to Video actions
+on submit loader with precentage of completion
 
-            - Can create video
-            - Can upload video
-            - Can update video information
-            - Can delete video
+backend => handle request and dispatch a
+    StoreVideo ( Job ) to save the file
+        and when
+
+        Dispatch job to create thumbnail ( this one changes the "video_completed" property )

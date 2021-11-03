@@ -15,11 +15,24 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
+use FFMpeg\FFMpeg;
+use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\Format\Video\X264;
+use FFMpeg\Format\Video\WMV;
+use FFMpeg\Format\Video\WebM;
 
 class VideoController extends Controller
 {
-    public function index()
+    public function index(IndexRequest $request)
     {
+        $request
+            ->user()
+            ->load(['videos' => function($query)
+            {
+                $query->select(['id', 'title', 'file_name', 'user_id']);
+            }]);
+
         return Inertia::render('Video/Index');
     }
 
@@ -33,6 +46,21 @@ class VideoController extends Controller
         $fileName = Str::random(8) . '.' . $request->file('file')->extension();
         $path = storage_path('public/');
         Storage::putFileAs('public/', $request->file('file'), $fileName);
+        $thumbnailName = Str::random(8);
+        $thumbnailPath = base_path('storage/app/public/');
+        $ffmpeg = FFMpeg::create();
+        $video = $ffmpeg->open($request->file('file'));
+        $video
+            ->filters()
+            ->resize(new Dimension(320, 240))
+            ->synchronize();
+        $video
+            ->frame(TimeCode::fromSeconds(10))
+            ->save($thumbnailPath . $thumbnailName . '.jpg');
+        // $video
+            // ->save(new X264(), 'export-x264.mp4');
+            // ->save(new WMV(), 'export-wmv.wmv')
+            // ->save(new WebM(), 'export-webm.webm');
 
         $data = collect($request->validated())
             ->merge([
@@ -52,9 +80,11 @@ class VideoController extends Controller
         return Inertia::render('Video/Show');
     }
 
-    public function edit()
+    public function edit(EditRequest $request, Video $video)
     {
-        return Inertia::render('Video/Edit');
+        return Inertia::render('Video/Edit', [
+            'video' => $video
+        ]);
     }
 
     public function update()
@@ -62,8 +92,11 @@ class VideoController extends Controller
 
     }
 
-    public function destory()
+    public function destroy(DestoryRequest $request, Video $video)
     {
+        $video->delete();
+        File::delete($video->path . $video->file_name);
 
+        return redirect()->route('dashboard.videos.index')->with('message', 'Video deleted!');
     }
 }

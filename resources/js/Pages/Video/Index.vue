@@ -6,6 +6,17 @@
         <div v-if="$page.props.flash.message">
             {{ $page.props.flash.message }}
         </div>
+
+        <div class="mt-4">
+            <div v-for="video in auth.user.videos" v-bind:key="video.id">
+                <p>{{ video.title }}</p>
+                <video width="320" height="320" muted controls>
+                    <source :src="'/storage/' + video.file_name" type="video/mp4">
+                </video>
+                <Link :href="route('dashboard.videos.edit', [video.id])">Edit</Link>
+                <button type="button" @click.once="deleteVideo(video)">Delete</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -19,5 +30,14 @@ export default {
     components: {
         Link,
     },
+    props: {
+        auth: Object,
+    },
+    methods: {
+        deleteVideo(video)
+        {
+            this.$inertia.delete('/dashboard/videos/' + video.id)
+        }
+    }
 }
 </script>
