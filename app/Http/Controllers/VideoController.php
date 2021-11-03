@@ -61,8 +61,6 @@ class VideoController extends Controller
             ->save($thumbnailPath . $thumbnailName . '.jpg');
         $video
             ->save(new X264(), $thumbnailPath . $fileName);
-            // ->save(new WMV(), 'export-wmv.wmv')
-            // ->save(new WebM(), 'export-webm.webm');
 
         $data = collect($request->validated())
             ->merge([
