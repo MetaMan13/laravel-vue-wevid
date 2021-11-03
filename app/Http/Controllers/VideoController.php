@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use FFMpeg\FFMpeg;
 use Inertia\Inertia;
 use App\Models\Video;
 use Illuminate\Support\Str;
+use FFMpeg\Format\Video\WMV;
 use Illuminate\Http\Request;
+use FFMpeg\Format\Video\WebM;
+use FFMpeg\Format\Video\X264;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\Coordinate\Dimension;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Video\IndexRequest;
@@ -15,12 +21,6 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
-use FFMpeg\FFMpeg;
-use FFMpeg\Coordinate\Dimension;
-use FFMpeg\Coordinate\TimeCode;
-use FFMpeg\Format\Video\X264;
-use FFMpeg\Format\Video\WMV;
-use FFMpeg\Format\Video\WebM;
 
 class VideoController extends Controller
 {

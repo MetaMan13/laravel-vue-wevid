@@ -25,7 +25,16 @@
             </div>
 
             <div>
-                <button>Store Video</button>
+                <button :class="{'bg-red-200 cursor-not-allowed' : form.processing }" :disabled="form.processing">Store Video</button>
+            </div>
+
+            <div>
+                <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                    {{ form.progress.percentage }}%
+                </progress>
+                <p v-if="form.progress">
+                    {{ form.progress.percentage}}%
+                </p>
             </div>
         </form>
     </div>
@@ -33,6 +42,7 @@
 
 <script>
 
+import { useForm } from '@inertiajs/inertia-vue3'
 import UserDashboard from './../../Layouts/UserDashboard.vue'
 
 export default {
@@ -42,16 +52,16 @@ export default {
     },
     data(){
         return{
-            form: {
+            form: useForm({
                 title: null,
                 file: null,
-            }
+            })
         }
     },
     methods:{
         storeVideo(){
-            this.$inertia.post('/dashboard/videos', this.form)
+            this.form.post('/dashboard/videos', this.form)
         },
-    }
+    },
 }
 </script>
