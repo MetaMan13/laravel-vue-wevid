@@ -15,3 +15,19 @@ backend => handle request and dispatch a
         and when
 
         Dispatch job to create thumbnail ( this one changes the "video_completed" property )
+
+
+
+Video
+
+    -title
+    -description
+    -private
+    -user_id
+    -file_id
+
+File
+
+    -path
+    -name
+    -is_processed

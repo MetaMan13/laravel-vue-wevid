@@ -15,4 +15,14 @@ class Video extends Model
         'file_name',
         'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function thumbnail()
+    {
+        return $this->hasOne(Thumbnail::class, 'video_id', 'id');
+    }
 }
