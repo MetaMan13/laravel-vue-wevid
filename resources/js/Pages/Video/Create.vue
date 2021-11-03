@@ -4,7 +4,7 @@
     </div>
 
     <div class="bg-white mt-4 border-t">
-        <form @submit.prevent="storeVideo" enctype="multipart/form-data">
+        <form @submit.prevent="storeVideo">
 
             <div>
                 <label for=""></label>
