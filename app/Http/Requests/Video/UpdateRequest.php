@@ -13,7 +13,8 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->id === $this->video->user_id;
+        // dd($this);
     }
 
     /**
@@ -24,7 +25,16 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'bail|required|min:3|max:100',
+            'file' => 'nullable|mimes:mp4,mov,ogg,qt|max:40000'
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'title.required' => 'Please enter a video title',
+            'file.nullable' => 'Please select a video file',
         ];
     }
 }

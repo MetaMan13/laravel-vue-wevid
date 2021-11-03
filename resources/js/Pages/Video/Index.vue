@@ -14,7 +14,7 @@
                     <source :src="'/storage/' + video.file_name" type="video/mp4">
                 </video>
                 <Link :href="route('dashboard.videos.edit', [video.id])">Edit</Link>
-                <button type="button" @click.once="deleteVideo(video)">Delete</button>
+                <button type="button" @click.once="deleteVideo(video)" class="ml-4">Delete</button>
             </div>
         </div>
     </div>

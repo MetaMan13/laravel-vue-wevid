@@ -87,9 +87,11 @@ class VideoController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(UpdateRequest $request, Video $video)
     {
+        $video->update($request->validated());
 
+        return redirect()->route('dashboard.videos.index')->with('message', 'Video updated!');
     }
 
     public function destroy(DestoryRequest $request, Video $video)
