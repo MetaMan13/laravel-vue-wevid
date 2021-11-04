@@ -1,6 +1,6 @@
 <template>
 
-    <div class="bg-white w-full px-6 py-6 rounded-md shadow-sm border border-gray-200">
+    <div class="bg-white w-full px-8 py-8 rounded-md shadow-sm border border-gray-200">
         <div class="flex items-center gap-2">
             <h2 class="text-3xl">Create a video</h2>
             <movie
@@ -41,7 +41,7 @@
                     <div class="flex flex-col cursor-pointer" @click="$refs.fileInput.click()">
                         <label for="" class="mb-1 text-base">Video file</label>
                         <input @input="form.file = $event.target.files[0]" ref="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" class="hidden">
-                        <div class="bg-white py-10 border border-gray-200 rounded-md hover:bg-gray-50">
+                        <div class="bg-white py-10 border border-gray-200 rounded-md hover:shadow-sm hover:bg-gray-50">
                             <div class="flex justify-center">
                                 <div>
                                     <div class="flex justify-center">
@@ -67,12 +67,12 @@
                 <!-- Form submit -->
                 <div class="mt-6">
                     <div>
-                        <!-- <button :class="{'bg-gray-100 text-gray-400 cursor-not-allowed' : form.processing }" :disabled="form.processing" class="border border-gray-200 w-full py-4 rounded-md hover:bg-gray-50">Upload Video</button> -->
-                        <button :class="{'hidden' : form.processing }" :disabled="form.processing" type="submit" class="bg-gray-600 text-white border border-gray-200 w-full py-4 rounded-md hover:bg-gray-500">Upload Video</button>
-                        <p v-if="form.progress">
+                        <button :class="{'bg-gray-100 text-gray-400 cursor-not-allowed' : form.processing }" :disabled="form.processing" class="bg-gray-600 text-white border border-gray-200 w-full py-4 rounded-md hover:bg-gray-700">Upload Video</button>
+                        <!-- <button :class="{'hidden' : form.processing }" :disabled="form.processing" type="submit" class="bg-gray-600 text-white border border-gray-200 w-full py-4 rounded-md hover:bg-gray-700">Upload Video</button> -->
+                        <p v-if="form.progress" class="mt-2">
                             {{ form.progress.percentage}}%
                         </p>
-                        <button v-show="form.processing" type="button" class="bg-red-500 text-white border border-gray-200 w-full py-4 rounded-md">Cancel</button>
+                        <button v-show="form.processing" type="button" class="bg-red-500 text-white border border-gray-200 w-full py-4 rounded-md mt-2">Cancel</button>
                     </div>
 
                     <div>
