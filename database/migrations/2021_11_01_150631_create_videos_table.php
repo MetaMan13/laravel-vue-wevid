@@ -16,7 +16,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable()->default(null);
             $table->boolean('is_processed')->default(false);
             $table->string('path');
             $table->string('file_name');

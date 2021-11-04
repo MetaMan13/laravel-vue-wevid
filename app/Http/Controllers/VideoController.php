@@ -7,7 +7,6 @@ use Inertia\Inertia;
 use App\Models\Video;
 use Illuminate\Support\Str;
 use FFMpeg\Format\Video\WMV;
-use Illuminate\Http\Request;
 use FFMpeg\Format\Video\WebM;
 use FFMpeg\Format\Video\X264;
 use FFMpeg\Coordinate\TimeCode;
@@ -21,6 +20,8 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
+use App\Jobs\CreateThumbnail;
+use App\Jobs\StoreVideo;
 
 class VideoController extends Controller
 {
@@ -43,34 +44,24 @@ class VideoController extends Controller
 
     public function store(StoreRequest $request)
     {
-        return 'Proslo';
-
-        $fileName = Str::random(8) . '.' . 'mp4';
-        $thumbnailName = Str::random(8);
-        $thumbnailPath = base_path('storage/app/public/');
+        // Save and convert the video
+        $path = base_path('storage/app/public/');
+        $fileName = Str::random(16) . '.' . 'mp4';
         $ffmpeg = FFMpeg::create();
-        $video = $ffmpeg->open($request->file('file'));
-        // Thumbnail creation
-        $video
-            ->filters()
-            ->resize(new Dimension(320, 240))
-            ->synchronize();
-        $video
-            ->frame(TimeCode::fromSeconds(10))
-            ->save($thumbnailPath . $thumbnailName . '.jpg');
-
-        // $video
-        //     ->save(new X264(), $thumbnailPath . $fileName);
+        $videoFile = $ffmpeg->open($request->file('file'));
+        $videoFile->save(new X264(), $path . $fileName);
 
         $data = collect($request->validated())
             ->merge([
-                'path' => $thumbnailPath,
-                'file_name' => $fileName,
-                'user_id' => $request->user()->id
+                'user_id' => $request->user()->id,
+                'path' => $path,
+                'file_name' => $fileName
             ])
             ->all();
 
-        Video::create($data);
+        $video = Video::create($data);
+
+        CreateThumbnail::dispatch($video);
 
         return redirect()->route('dashboard.videos.index')->with('message', 'Video created!');
     }
