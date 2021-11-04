@@ -46,7 +46,12 @@
                             <div class="flex justify-center">
 
                                 <!-- If file input is null -->
-                                <div v-if="form.file == null" @click="openFileExplorer" class="py-10 w-full h-full cursor-pointer">
+                                <div v-if="form.file == null" 
+                                    @click="openFileExplorer" 
+                                    @dragover.prevent @drop.prevent="appendDragAndDropFile($event)" 
+                                    class="py-10 w-full h-full cursor-pointer"
+                                    >
+
                                     <div class="flex justify-center">
                                         <upload
                                             :height="24"
@@ -147,6 +152,9 @@ export default {
         },
         appendFile(event){
             this.form.file = event.target.files[0]
+        },
+        appendDragAndDropFile(){
+            this.form.file = event.dataTransfer.files[0]
         },
         discartFile(){
             document.getElementById('fileInput').value = null;
