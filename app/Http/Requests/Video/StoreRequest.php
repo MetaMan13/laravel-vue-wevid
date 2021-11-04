@@ -26,14 +26,22 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'bail|required|min:3|max:100',
-            'file' => 'bail|required|mimes:mp4,mov,ogg,qt|max:1000000'
+            'description' => 'bail|nullable|min:5|max:200',
+            'file' => 'bail|required|file|mimes:mp4,mov,ogg,qt|max:102400'
         ];
     }
 
     public function messages()
     {
         return[
-            'file.required' => 'Please select a video file'
+            'title.required' => 'Please enter a video title!',
+            'title.min' => 'Video title must be atleast 3 characters long',
+            'title.max' => 'Video title must be less than 100 characters',
+            'description.min' => 'Video description must be atleast 5 characters long',
+            'description.max' => 'Video description must be less than 100 characters',
+            'file.required' => 'Please select a video file',
+            'file.mimes' => 'Please select one of the following file types: mp4, mov, ogg, qt',
+            'file.max' => 'Please select a file that is less than 100mb'
         ];
     }
 }

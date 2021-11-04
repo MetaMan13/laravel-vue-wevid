@@ -43,15 +43,14 @@ class VideoController extends Controller
 
     public function store(StoreRequest $request)
     {
-        // $fileName = Str::random(8) . '.' . $request->file('file')->extension();
-        // $path = storage_path('public/');
-        // Storage::putFileAs('public/', $request->file('file'), $fileName);
-        $fileName = Str::random(8) . '.' . 'mp4';
+        return 'Proslo';
 
+        $fileName = Str::random(8) . '.' . 'mp4';
         $thumbnailName = Str::random(8);
         $thumbnailPath = base_path('storage/app/public/');
         $ffmpeg = FFMpeg::create();
         $video = $ffmpeg->open($request->file('file'));
+        // Thumbnail creation
         $video
             ->filters()
             ->resize(new Dimension(320, 240))
@@ -59,8 +58,9 @@ class VideoController extends Controller
         $video
             ->frame(TimeCode::fromSeconds(10))
             ->save($thumbnailPath . $thumbnailName . '.jpg');
-        $video
-            ->save(new X264(), $thumbnailPath . $fileName);
+
+        // $video
+        //     ->save(new X264(), $thumbnailPath . $fileName);
 
         $data = collect($request->validated())
             ->merge([
@@ -72,7 +72,7 @@ class VideoController extends Controller
 
         Video::create($data);
 
-        return redirect()->route('dashboard.videos.index')->with('message', 'Video uploaded!');
+        return redirect()->route('dashboard.videos.index')->with('message', 'Video created!');
     }
 
     public function show()
