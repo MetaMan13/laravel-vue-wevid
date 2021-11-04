@@ -1,8 +1,13 @@
 <template>
 
     <div class="bg-white w-full px-6 py-6 rounded-md shadow-sm border border-gray-200">
-        <div>
+        <div class="flex items-center gap-2">
             <h2 class="text-3xl">Create a video</h2>
+            <movie
+                :width="28"
+                :height="28"
+                >
+            </movie>
         </div>
         <div class="mt-10">
             <form @submit.prevent="storeVideo">
@@ -33,9 +38,9 @@
 
                 <!-- Video file -->
                 <div class="mt-6">
-                    <div class="flex flex-col">
+                    <div class="flex flex-col cursor-pointer" @click="$refs.fileInput.click()">
                         <label for="" class="mb-1 text-base">Video file</label>
-                        <input @input="form.file = $event.target.files[0]" type="file" accept="video/mp4,video/x-m4v,video/*" class="hidden">
+                        <input @input="form.file = $event.target.files[0]" ref="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" class="hidden">
                         <div class="bg-white py-10 border border-gray-200 rounded-md hover:bg-gray-50">
                             <div class="flex justify-center">
                                 <div>
@@ -46,8 +51,8 @@
                                             >
                                         </upload>
                                     </div>
-                                    <div class="flex justify-center">
-                                        <p>Upload file</p>
+                                    <div class="flex justify-center mt-2">
+                                        <p class="font-semibold">Upload file</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,11 +68,11 @@
                 <div class="mt-6">
                     <div>
                         <!-- <button :class="{'bg-gray-100 text-gray-400 cursor-not-allowed' : form.processing }" :disabled="form.processing" class="border border-gray-200 w-full py-4 rounded-md hover:bg-gray-50">Upload Video</button> -->
-                        <button :class="{'hidden' : form.processing }" :disabled="form.processing" class="bg-gray-600 text-white border border-gray-200 w-full py-4 rounded-md hover:bg-gray-500">Upload Video</button>
+                        <button :class="{'hidden' : form.processing }" :disabled="form.processing" type="submit" class="bg-gray-600 text-white border border-gray-200 w-full py-4 rounded-md hover:bg-gray-500">Upload Video</button>
                         <p v-if="form.progress">
                             {{ form.progress.percentage}}%
                         </p>
-                        <button v-show="form.processing" class="bg-red-500 text-white border border-gray-200 w-full py-4 rounded-md">Cancel</button>
+                        <button v-show="form.processing" type="button" class="bg-red-500 text-white border border-gray-200 w-full py-4 rounded-md">Cancel</button>
                     </div>
 
                     <div>
@@ -90,11 +95,13 @@
 import { useForm } from '@inertiajs/inertia-vue3'
 import UserDashboard from './../../Layouts/UserDashboard.vue'
 import Upload from './../../Components/Icons/Upload.vue'
+import Movie from './../../Components/Icons/Movie.vue'
 
 export default {
     layout: UserDashboard,
     components: {
         Upload,
+        Movie,
     },
     props: {
         errors: Object,

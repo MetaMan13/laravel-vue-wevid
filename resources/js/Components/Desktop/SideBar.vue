@@ -58,7 +58,7 @@
                         <side-bar-link 
                             :href="route('dashboard')"
                             :sideBarMenuOpen="sideBarMenuOpen"
-                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard'}"
+                            :class="{'bg-gray-50': $page.url === '/dashboard'}"
                             >
                             <template v-slot:icon>
                                 <home
@@ -77,7 +77,7 @@
                         <side-bar-link 
                             :href="route('dashboard.videos.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
-                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url.startsWith('/dashboard/videos')}"
+                            :class="{'bg-gray-50': $page.url.startsWith('/dashboard/videos')}"
                             >
                             <template v-slot:icon>
                                 <video-icon
@@ -96,7 +96,7 @@
                         <side-bar-link 
                             :href="route('dashboard.profile.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
-                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/profile'}"
+                            :class="{'bg-gray-50': $page.url === '/dashboard/profile'}"
                             >
                             <template v-slot:icon>
                                 <user
@@ -115,7 +115,7 @@
                         <side-bar-link 
                             :href="route('dashboard.settings.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
-                            :class="{'bg-gray-100 hover:bg-gray-100': $page.url === '/dashboard/settings'}"
+                            :class="{'bg-gray-50': $page.url === '/dashboard/settings'}"
                             >
                             <template v-slot:icon>
                                 <settings
