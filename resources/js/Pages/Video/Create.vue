@@ -38,11 +38,11 @@
 
                 <!-- Video file -->
                 <!-- File upload component START -->
-                <div class="mt-6">
+                <div class="mt-6" :class="{ 'hidden' : form.progress }">
                     <div class="flex flex-col">
-                        <label for="" class="mb-1 text-base" :class="{ 'hidden' : form.processing }">Video file</label>
+                        <label class="mb-1 text-base">Video file</label>
                         <input @input="appendFile($event)" id="fileInput" ref="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" class="hidden">
-                        <div :class="{ 'hidden' : form.processing }" class="bg-white border border-gray-200 rounded-md hover:shadow-sm hover:bg-gray-50">
+                        <div class="bg-white border border-gray-200 rounded-md hover:shadow-sm hover:bg-gray-50">
                             <div class="flex justify-center">
 
                                 <!-- If file input is null -->
@@ -65,8 +65,7 @@
                                 </div>
 
                                 <!-- If file is selected -->
-                                <div v-if="form.file != null" :class="{ 'hidden' : form.processing }" class="py-6 w-full h-full">
-
+                                <div v-if="form.file != null" :class="{ 'hidden' : form.progress }" class="py-6 w-full h-full">
                                     <div class="flex justify-center">
                                         <p>{{ form.file.name }}</p>
                                     </div>
@@ -83,6 +82,7 @@
                                         </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -97,13 +97,20 @@
                 <!-- Form submit -->
                 <div class="mt-6">
                     <div>
-                        <div v-if="form.progress" class="bg-gray-600 rounded-md flex flex-col items-center py-6 -mt-6">
+                        <div v-if="form.progress" class="bg-gray-600 rounded-md flex flex-col items-center py-6">
                             <p class="text-gray-300 mb-4">Uploading {{ form.progress.percentage }}%</p>
                             <!-- <p class="text-gray-300 mb-4">Uplaoding 84%</p> -->
                             <img src="/images/icons/loading.png" alt="Spinner" class="h-8 w-8 animate-spin">
                         </div>
-                        <button :class="{'bg-gray-600 text-gray-400 cursor-not-allowed hover:bg-gray-600 hidden' : form.processing, 'bg-gray-600 hover:bg-gray-700 text-white' : !form.processing }" :disabled="form.processing" class="text-white border border-gray-200 w-full py-4 rounded-md">Upload Video</button>
-                        <button v-show="form.processing" @click="form.cancel()" type="button" class="bg-red-500 hover:bg-red-600 text-white border border-gray-200 w-full py-4 rounded-md mt-4">
+                        <button :class="{'hidden' : form.progress,
+                            'bg-gray-600 text-gray-400 cursor-not-allowed hover:bg-gray-600' : form.processing ,
+                            'bg-gray-600 hover:bg-gray-700 text-white transition duration-200 ease-in-out' : !form.processing }" 
+                            :disabled="form.processing" 
+                            class="text-white border border-gray-200 w-full py-4 rounded-md"
+                            >
+                            Upload Video
+                            </button>
+                        <button v-show="form.progress" @click="form.cancel()" type="button" class="bg-red-500 hover:bg-red-600 text-white border border-gray-200 w-full py-4 rounded-md mt-4">
                             Cancel
                         </button>
                     </div>
