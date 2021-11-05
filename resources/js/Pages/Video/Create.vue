@@ -87,6 +87,7 @@
 
                                     <div>
                                         <video :src="videoSource" width="320" height="320" controls autoplay loop></video>
+                                        <p id="videoDuration"></p>
                                     </div>
 
                                     <div>
@@ -169,6 +170,7 @@ export default {
                 gifTo: null,
             }),
             videoSource: null,
+            videoDuration: null,
         }
     },
     methods:{
@@ -200,6 +202,17 @@ export default {
         },
         playVideo(){
             this.videoSource = URL.createObjectURL(this.form.file)
+            this.getVideoDuration()
+        },
+        getVideoDuration(){
+            window.URL = window.URL || window.webkitURL
+            let videoElement = document.createElement('video') 
+            videoElement.preload = 'metadata'
+            videoElement.src = URL.createObjectURL(this.form.file)
+            videoElement.onloadedmetadata = () => {
+                window.URL.revokeObjectURL(videoElement.src)
+                document.getElementById('videoDuration').innerHTML = videoElement.duration
+            }
         }
     },
 }
