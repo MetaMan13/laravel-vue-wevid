@@ -6,9 +6,8 @@ use FFMpeg\FFMpeg;
 use Inertia\Inertia;
 use App\Models\Video;
 use Illuminate\Support\Str;
-use FFMpeg\Format\Video\WMV;
-use FFMpeg\Format\Video\WebM;
 use FFMpeg\Format\Video\X264;
+use App\Jobs\CreateThumbnail;
 use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\Coordinate\Dimension;
 use Illuminate\Support\Facades\File;
@@ -20,19 +19,14 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
-use App\Jobs\CreateThumbnail;
-use App\Jobs\StoreVideo;
 
 class VideoController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $request
-            ->user()
-            ->load(['videos' => function($query)
-            {
-                $query->select(['id', 'title', 'file_name', 'user_id']);
-            }]);
+        $request->user()->load(['videos' => function($query){
+            $query->where('is_processed', 1);
+        }, 'videos.thumbnail']);
 
         return Inertia::render('Video/Index');
     }
@@ -46,7 +40,7 @@ class VideoController extends Controller
     {
         // Save and convert the video
         $path = base_path('storage/app/public/');
-        $fileName = Str::random(16) . '.' . 'mp4';
+        $fileName = Str::random(16) . '.' . $request->file('file')->extension();
         $ffmpeg = FFMpeg::create();
         $videoFile = $ffmpeg->open($request->file('file'));
         $videoFile->save(new X264(), $path . $fileName);

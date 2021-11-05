@@ -41,7 +41,7 @@
                 <div class="mt-6" :class="{ 'hidden' : form.progress }">
                     <div class="flex flex-col">
                         <label class="mb-1 text-base">Video file</label>
-                        <input @input="appendFile($event)" id="fileInput" ref="fileInput" type="file" accept="video/mp4,video/x-m4v,video/*" class="hidden">
+                        <input @input="appendFile($event)" id="fileInput" ref="fileInput" type="file" accept="video/mp4" class="hidden">
                         <div class="bg-white border border-gray-200 rounded-md hover:shadow-sm hover:bg-gray-50">
                             <div class="flex justify-center">
 

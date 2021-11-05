@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'bail|required|min:3|max:100',
             'description' => 'bail|nullable|min:5|max:200',
-            'file' => 'bail|required|file|mimes:mp4,mov,ogg,qt|max:102400'
+            'file' => 'bail|required|file|mimes:mp4,ogg,qt|max:102400'
         ];
     }
 

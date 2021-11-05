@@ -23,6 +23,7 @@ module.exports = {
             opacity: ['disabled'],
             backdropBlur: ['hover', 'focus'],
             backdropFilter: ['hover', 'focus'],
+            display: ['group-hover'],
         },
     },
 

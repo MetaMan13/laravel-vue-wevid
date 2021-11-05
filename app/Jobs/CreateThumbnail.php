@@ -14,6 +14,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Support\Facades\File;
 
 class CreateThumbnail implements ShouldQueue
 {
@@ -43,13 +44,15 @@ class CreateThumbnail implements ShouldQueue
 
         $ffmpeg = FFMpeg::create();
         $videoFile = $ffmpeg->open($this->video->path . $this->video->file_name);
+
         $videoFile
-            ->filters()
-            ->resize(new Dimension(320, 240))
-            ->synchronize();
-        $videoFile
-            ->frame(TimeCode::fromSeconds(10))
+            ->frame(TimeCode::fromSeconds(2))
             ->save($path . $fileName);
+
+        if(!File::exists($path . $fileName))
+        {
+            return false;
+        }
 
         $thumbnail = Thumbnail::create([
             'path' => $path,

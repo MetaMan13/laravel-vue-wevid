@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,8 @@ class Video extends Model
         'user_id',
     ];
 
+    // Relationships
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -26,5 +29,12 @@ class Video extends Model
     public function thumbnail()
     {
         return $this->hasOne(Thumbnail::class, 'video_id', 'id');
+    }
+
+    // Mutators
+
+    public function getCreatedAtAttribute()
+    {
+        return $this->attributes['created_at'] = Carbon::createFromTimestamp(strtotime($this->attributes['created_at']))->diffForHumans();
     }
 }
