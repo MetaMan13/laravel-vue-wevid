@@ -78,33 +78,27 @@ class VideoController extends Controller
 
         if($request->file('file'))
         {
-            // $fileName = Str::random(8) . '.' . $request->file('file')->extension();
-            // $path = storage_path('public/');
-            // Storage::putFileAs('public/', $request->file('file'), $fileName);
-            $fileName = Str::random(8) . '.' . 'mp4';
-
-            $thumbnailName = Str::random(8);
-            $thumbnailPath = base_path('storage/app/public/');
+            $path = base_path('storage/app/public/');
+            $fileName = Str::random(16) . '.' . $request->file('file')->extension();
             $ffmpeg = FFMpeg::create();
             $videoFile = $ffmpeg->open($request->file('file'));
-            $videoFile
-                ->filters()
-                ->resize(new Dimension(320, 240))
-                ->synchronize();
-            $videoFile
-                ->frame(TimeCode::fromSeconds(10))
-                ->save($thumbnailPath . $thumbnailName . '.jpg');
-            $videoFile
-                ->save(new X264(), $thumbnailPath . $fileName);
-                // ->save(new WMV(), 'export-wmv.wmv')
-                // ->save(new WebM(), 'export-webm.webm');
+            $videoFile->save(new X264(), $path . $fileName);
 
             $data = collect($request->validated())
                 ->merge([
-                    'path' => $thumbnailPath,
+                    'path' => $path,
                     'file_name' => $fileName,
+                    'is_processed' => false,
                 ])
                 ->all();
+
+            $thumbnail = $video->thumbnail()->get()->first();
+            
+            File::delete($thumbnail->path . $thumbnail->file_name);
+
+            $thumbnail->delete();
+            
+            CreateThumbnail::dispatch($video);
         }
 
         $video->update($data);

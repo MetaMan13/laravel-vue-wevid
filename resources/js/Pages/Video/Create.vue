@@ -38,7 +38,7 @@
 
                 <!-- Video file -->
                 <!-- File upload component START -->
-                <div class="mt-6" :class="{ 'hidden' : form.progress }">
+                <div class="mt-6" >
                     <div class="flex flex-col">
                         <label class="mb-1 text-base">Video file</label>
                         <input @input="appendFile($event)" id="fileInput" ref="fileInput" type="file" accept="video/mp4" class="hidden">
@@ -49,7 +49,7 @@
                                 <div v-if="form.file == null" 
                                     @click="openFileExplorer" 
                                     @dragover.prevent @drop.prevent="appendDragAndDropFile($event)" 
-                                    class="py-10 w-full h-full cursor-pointer"
+                                    class="py-9 w-full h-full cursor-pointer"
                                     >
 
                                     <div class="flex justify-center">
@@ -62,15 +62,18 @@
                                     <div class="flex justify-center mt-2">
                                         <p class="font-semibold">Upload file</p>
                                     </div>
+                                    <div class="flex justify-center mt-0.5 pb-0.5">
+                                        <p class="text-xs text-gray-500">( .mp4 files only )</p>
+                                    </div>
                                 </div>
 
                                 <!-- If file is selected -->
-                                <div v-if="form.file != null" :class="{ 'hidden' : form.progress }" class="py-6 w-full h-full">
+                                <div v-if="form.file != null" @dragover.prevent @drop.prevent="appendDragAndDropFile($event)" class="py-8 w-full h-full">
                                     <div class="flex justify-center">
                                         <p>{{ form.file.name }}</p>
                                     </div>
 
-                                    <div class="flex justify-center mt-6">
+                                    <div class="flex justify-center mt-5">
                                         <button @click="discartFile" :disabled="form.processing" :class="{'cursor-not-allowed' : form.processing }" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 cursor-pointer rounded-md font-semibold flex gap-1 items-center justify-center select-none">
                                             Discart
                                             <trash
@@ -81,13 +84,30 @@
                                             </trash>
                                         </button>
                                     </div>
+
+                                    <div>
+                                        <video :src="videoSource" width="320" height="320" controls autoplay loop></video>
+                                    </div>
+
+                                    <div>
+                                        <p>Gif</p>
+                                        <div>
+                                            <label for="">From:</label>
+                                            <input v-model="form.gifFrom" type="number" step="1">
+                                        </div>
+                                        <div>
+                                            <label for="">To:</label>
+                                            <input v-model="form.gifto" type="number" step="1">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <div v-if="errors.file" class="mt-2">
+                    <div v-if="errors.file" :class="{ 'hidden' : form.file != null }" class="mt-2">
                         <p class="text-sm text-red-600">{{ errors.file }}</p>
                     </div>
                 </div>
@@ -97,14 +117,14 @@
                 <!-- Form submit -->
                 <div class="mt-6">
                     <div>
-                        <div v-if="form.progress" class="bg-gray-600 rounded-md flex flex-col items-center py-6">
-                            <p class="text-gray-300 mb-4">Uploading {{ form.progress.percentage }}%</p>
+                        <div v-if="form.progress" class="bg-gray-600 rounded-md flex flex-col items-center py-4">
+                            <p v-if="form.progress" class="text-gray-300">Uploading {{ form.progress.percentage }}%</p>
                             <!-- <p class="text-gray-300 mb-4">Uplaoding 84%</p> -->
-                            <img src="/images/icons/loading.png" alt="Spinner" class="h-8 w-8 animate-spin">
+                            <!-- <img src="/images/icons/loading.png" alt="Spinner" class="h-8 w-8 animate-spin"> -->
                         </div>
                         <button :class="{'hidden' : form.progress,
-                            'bg-gray-600 text-gray-400 cursor-not-allowed hover:bg-gray-600' : form.processing ,
-                            'bg-gray-600 hover:bg-gray-700 text-white transition duration-200 ease-in-out' : !form.processing }" 
+                            'bg-gray-600 text-gray-400 cursor-not-allowed hover:bg-gray-600' : form.progress ,
+                            'bg-gray-600 hover:bg-gray-700 text-white transition duration-200 ease-in-out' : !form.progress }" 
                             :disabled="form.processing" 
                             class="text-white border border-gray-200 w-full py-4 rounded-md"
                             >
@@ -145,7 +165,10 @@ export default {
                 title: null,
                 description: null,
                 file: null,
-            })
+                gifFrom: null,
+                gifTo: null,
+            }),
+            videoSource: null,
         }
     },
     methods:{
@@ -159,13 +182,24 @@ export default {
         },
         appendFile(event){
             this.form.file = event.target.files[0]
+            this.playVideo()
         },
         appendDragAndDropFile(){
+            if(this.form.file)
+            {
+                document.getElementById('fileInput').value = null;
+                this.videoSource = null
+            }
             this.form.file = event.dataTransfer.files[0]
+            this.playVideo()
         },
         discartFile(){
             document.getElementById('fileInput').value = null;
+            this.videoSource = null
             this.form.file = null
+        },
+        playVideo(){
+            this.videoSource = URL.createObjectURL(this.form.file)
         }
     },
 }
