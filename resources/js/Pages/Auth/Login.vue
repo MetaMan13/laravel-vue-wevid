@@ -1,80 +1,64 @@
 <template>
-    <Head title="Log in" />
+    <!-- Master Guest layout START -->
+    <div class="w-full h-screen bg-gray-100 dark:bg-gray-900 dark:text-white flex flex-col items-center justify-center">
+        <!-- <div class="bg-white dark:bg-gray-800 w-full h-20 flex items-center justify-center">
+            <p>Test 123</p>
+        </div> -->
 
-    <BreezeValidationErrors class="mb-4" />
+        <div class="absolute top-0 right-0 bg-white dark:bg-gray-800 flex flex-col gap-6 py-4 px-4">
+            <button @click="addDarkMode">Add darkmode</button>
+            <button @click="removeDarkMode" class="ml-6">remove darkmode</button>
+        </div>
+        <div class="bg-white dark:bg-gray-800">
 
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-        {{ status }}
+            <!-- Application Logo -->
+            <div>
+
+            </div>
+
+            <!-- Login form -->
+            <div>
+                <form @submit.prevent="submit">
+                    <input v-model="form.email" type="email">
+                    <input v-model="form.password" type="password">
+                    <input v-model="form.remember" type="checkbox">
+                </form>
+            </div>
+
+        </div>
     </div>
-
-    <form @submit.prevent="submit">
-        <div>
-            <BreezeLabel for="email" value="Email" />
-            <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-        </div>
-
-        <div class="mt-4">
-            <BreezeLabel for="password" value="Password" />
-            <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-        </div>
-
-        <div class="block mt-4">
-            <label class="flex items-center">
-                <BreezeCheckbox name="remember" v-model:checked="form.remember" />
-                <span class="ml-2 text-sm text-gray-600">Remember me</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                Forgot your password?
-            </Link>
-
-            <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Log in
-            </BreezeButton>
-        </div>
-    </form>
+    <!-- Master Guest Layout END -->
 </template>
 
 <script>
-import BreezeButton from '@/Components/Button.vue'
-import BreezeCheckbox from '@/Components/Checkbox.vue'
-import BreezeGuestLayout from '@/Layouts/Guest.vue'
-import BreezeInput from '@/Components/Input.vue'
-import BreezeLabel from '@/Components/Label.vue'
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue'
-import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default {
-    layout: BreezeGuestLayout,
-
-    components: {
-        BreezeButton,
-        BreezeCheckbox,
-        BreezeInput,
-        BreezeLabel,
-        BreezeValidationErrors,
-        Head,
-        Link,
-    },
-
     props: {
         canResetPassword: Boolean,
         status: String,
+        errors: Object,
     },
-
-    data() {
-        return {
+    data(){
+        return{
             form: this.$inertia.form({
                 email: '',
                 password: '',
-                remember: false
-            })
+                remember: false,
+            }),
         }
     },
-
     methods: {
+        removeDarkMode()
+        {
+            if(document.body.classList.contains('dark')){
+                document.body.classList.remove('dark')
+            }
+        },
+        addDarkMode(){
+            if(!document.body.classList.contains('dark')){
+                document.body.classList.add('dark')
+            }
+        },
         submit() {
             this.form.post(this.route('login'), {
                 onFinish: () => this.form.reset('password'),
