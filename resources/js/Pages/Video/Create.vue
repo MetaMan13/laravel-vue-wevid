@@ -109,7 +109,15 @@
                                         <div class="flex gap-4 mt-4">
                                             <div class="w-full flex flex-col">
                                                 <label for="">From:</label>
-                                                <input v-model="form.gifFrom" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400">
+                                                <!-- <input v-model="form.gifFrom" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400"> -->
+												<number-input
+													v-model="form.gifFrom"
+													v-on:keydown.enter.prevent
+													:min="0"
+													:max="videoDuration"
+													:step="0.1"
+													>
+												</number-input>
 
 												<div v-if="errors.gifFrom" class="mt-2">
 													<p class="text-sm text-red-600">{{ errors.gifFrom }}</p>
@@ -117,7 +125,16 @@
                                             </div>
                                             <div class="w-full flex flex-col">
                                                 <label for="">To:</label>
-                                                <input v-model="form.gifTo" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400">
+                                                <!-- <input v-model="form.gifTo" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400"> -->
+
+												<number-input
+													v-model="form.gifTo"
+													v-on:keydown.enter.prevent
+													:min="0"
+													:max="videoDuration"
+													:step="0.1"
+													>
+												</number-input>
 
 												<div v-if="errors.gifTo" class="mt-2">
 													<p class="text-sm text-red-600">{{ errors.gifTo }}</p>
@@ -171,6 +188,7 @@ import UserDashboard from './../../Layouts/UserDashboard.vue';
 import Upload        from './../../Components/Icons/Upload.vue';
 import Movie         from './../../Components/Icons/Movie.vue';
 import Trash         from './../../Components/Icons/Trash.vue';
+import NumberInput from './../../Components/Shared/Forms/NumberInput.vue'
 
 export default {
 	layout     : UserDashboard,
@@ -178,6 +196,7 @@ export default {
 		Upload,
 		Movie,
 		Trash,
+		NumberInput,
 	},
 	props      : {
 		errors : Object,
