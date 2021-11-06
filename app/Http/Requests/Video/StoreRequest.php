@@ -13,8 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        // return $this->user() != null;
-        return true;
+        return $this->user() != null;
     }
 
     /**
@@ -27,7 +26,9 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'bail|required|min:3|max:100',
             'description' => 'bail|nullable|min:5|max:200',
-            'file' => 'bail|required|file|mimes:mp4,ogg,qt|max:102400'
+            'file' => 'bail|required|file|mimes:mp4,ogg,qt|max:102400',
+            'gifFrom' => 'bail|required|numeric|min:0.0|max:' . $this->duration,
+            'gifTo' => 'bail|required|numeric|min:0.0|max:' . $this->duration,
         ];
     }
 

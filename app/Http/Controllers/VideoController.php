@@ -19,6 +19,8 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
+use App\Jobs\CreateGif;
+use App\Models\Gif;
 
 class VideoController extends Controller
 {
@@ -26,7 +28,7 @@ class VideoController extends Controller
     {
         $request->user()->load(['videos' => function($query){
             $query->where('is_processed', 1);
-        }, 'videos.thumbnail']);
+        }, 'videos.thumbnail', 'videos.gif']);
 
         return Inertia::render('Video/Index');
     }
@@ -56,6 +58,7 @@ class VideoController extends Controller
         $video = Video::create($data);
 
         CreateThumbnail::dispatch($video);
+        CreateGif::dispatch($video, $data['gifFrom'], $data['gifTo']);
 
         return redirect()->route('dashboard.videos.index')->with('message', 'Video created!');
     }

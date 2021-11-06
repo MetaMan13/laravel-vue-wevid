@@ -26,7 +26,8 @@
     <div class="w-full mt-4 grid grid-cols-4 gap-4">
         <div v-for="video in auth.user.videos" v-bind:key="video.id" class="bg-white border border-gray-200 shadow-sm rounded-md">
             <div class="relative group">
-                <img :src="'/storage/' + video.thumbnail.file_name" class="rounded-tl-md rounded-tr-md">
+                <img :src="'/storage/' + video.thumbnail.file_name" class="rounded-tl-md rounded-tr-md group-hover:hidden">
+                <img :src="'/storage/' + video.gif.file_name" class="rounded-tl-md rounded-tr-md hidden group-hover:block">
 
                 <div class="hidden group-hover:block">
                     <div class="absolute top-0 left-0 z-20 flex gap-8 items-center justify-center w-full h-full">

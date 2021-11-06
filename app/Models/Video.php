@@ -31,6 +31,11 @@ class Video extends Model
         return $this->hasOne(Thumbnail::class, 'video_id', 'id');
     }
 
+    public function gif()
+    {
+        return $this->hasOne(Gif::class, 'video_id', 'id');
+    }
+
     // Mutators
 
     public function getCreatedAtAttribute()

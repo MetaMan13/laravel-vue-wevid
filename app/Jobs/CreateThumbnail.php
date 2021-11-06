@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Gif;
 use App\Models\Thumbnail;
 use FFMpeg\FFMpeg;
 use App\Models\Video;
@@ -49,18 +50,13 @@ class CreateThumbnail implements ShouldQueue
             ->frame(TimeCode::fromSeconds(2))
             ->save($path . $fileName);
 
-        if(!File::exists($path . $fileName))
-        {
-            return false;
-        }
-
-        $thumbnail = Thumbnail::create([
+        Thumbnail::create([
             'path' => $path,
             'file_name' => $fileName,
             'video_id' => $this->video->id,
         ]);
 
-        $this->video->is_processed = true;
+        // $this->video->is_processed = true;
         $this->video->save();
     }
 }
