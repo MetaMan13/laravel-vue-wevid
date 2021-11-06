@@ -91,11 +91,11 @@ class VideoController extends Controller
                     'is_processed' => false,
                 ])
                 ->all();
-
-            $thumbnail = $video->thumbnail()->get()->first();
             
+            // Delete thumbnail and video
+            File::delete($video->path . $video->file_name);
+            $thumbnail = $video->thumbnail()->get()->first();
             File::delete($thumbnail->path . $thumbnail->file_name);
-
             $thumbnail->delete();
             
             CreateThumbnail::dispatch($video);
@@ -108,8 +108,10 @@ class VideoController extends Controller
 
     public function destroy(DestoryRequest $request, Video $video)
     {
+        $thumbnail = $video->thumbnail()->get()->first();
         $video->delete();
         File::delete($video->path . $video->file_name);
+        File::delete($thumbnail->path . $thumbnail->file_name);
 
         return redirect()->route('dashboard.videos.index')->with('message', 'Video deleted!');
     }

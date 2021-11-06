@@ -39,10 +39,12 @@ class ClearPublicStorage extends Command
     public function handle()
     {
         // Confirm that the user wants to delete all files before deleting
-        if($this->confirm('Are you sure you want to delete all files from storage/app/public ?'))
-        {
-            $files = new Filesystem();
-            $files->cleanDirectory('storage/app/public');
-        }
+        // if($this->confirm('Are you sure you want to delete all files from storage/app/public ?'))
+        // {
+        //     $files = new Filesystem();
+        //     $files->cleanDirectory('storage/app/public');
+        // }
+        $files = new Filesystem();
+        $files->cleanDirectory('storage/app/public');
     }
 }
