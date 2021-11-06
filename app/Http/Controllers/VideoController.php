@@ -95,13 +95,18 @@ class VideoController extends Controller
                 ])
                 ->all();
             
-            // Delete thumbnail and video
+            // Delete thumbnail, gif and video
+            // Should be extracted the file deletions
             File::delete($video->path . $video->file_name);
+            $gif = $video->gif()->get()->first();
+            File::delete($gif->path . $gif->file_name);
+            $gif->delete();
             $thumbnail = $video->thumbnail()->get()->first();
             File::delete($thumbnail->path . $thumbnail->file_name);
             $thumbnail->delete();
             
             CreateThumbnail::dispatch($video);
+            CreateGif::dispatch($video, $request['gifFrom'], $request['gifTo']);
         }
 
         $video->update($data);
@@ -112,9 +117,11 @@ class VideoController extends Controller
     public function destroy(DestoryRequest $request, Video $video)
     {
         $thumbnail = $video->thumbnail()->get()->first();
+        $gif = $video->gif()->get()->first();
         $video->delete();
         File::delete($video->path . $video->file_name);
         File::delete($thumbnail->path . $thumbnail->file_name);
+        File::delete($gif->path . $gif->file_name);
 
         return redirect()->route('dashboard.videos.index')->with('message', 'Video deleted!');
     }

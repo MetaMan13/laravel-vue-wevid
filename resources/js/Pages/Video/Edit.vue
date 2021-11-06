@@ -109,11 +109,36 @@
                                         <div class="flex gap-4 mt-4">
                                             <div class="w-full flex flex-col">
                                                 <label for="">From:</label>
-                                                <input v-model="form.gifFrom" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400">
+                                                <!-- <input v-model="form.gifFrom" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400"> -->
+												<number-input
+													v-model="form.gifFrom"
+													v-on:keydown.enter.prevent
+													:min="0"
+													:max="videoDuration"
+													:step="0.1"
+													>
+												</number-input>
+
+												<div v-if="errors.gifFrom" class="mt-2">
+													<p class="text-sm text-red-600">{{ errors.gifFrom }}</p>
+												</div>
                                             </div>
                                             <div class="w-full flex flex-col">
                                                 <label for="">To:</label>
-                                                <input v-model="form.gifTo" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400">
+                                                <!-- <input v-model="form.gifTo" v-on:keydown.enter.prevent type="number" min="0" :max="videoDuration" step="0.1" class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400"> -->
+
+												<number-input
+													v-model="form.gifTo"
+													v-on:keydown.enter.prevent
+													:min="0"
+													:max="videoDuration"
+													:step="0.1"
+													>
+												</number-input>
+
+												<div v-if="errors.gifTo" class="mt-2">
+													<p class="text-sm text-red-600">{{ errors.gifTo }}</p>
+												</div>
                                             </div>
                                         </div>
 									</div>
@@ -163,6 +188,7 @@ import UserDashboard from './../../Layouts/UserDashboard.vue';
 import Upload        from './../../Components/Icons/Upload.vue';
 import Movie         from './../../Components/Icons/Movie.vue';
 import Trash         from './../../Components/Icons/Trash.vue';
+import NumberInput from './../../Components/Shared/Forms/NumberInput.vue'
 
 export default {
 	layout     : UserDashboard,
@@ -170,21 +196,23 @@ export default {
 		Upload,
 		Movie,
 		Trash,
+		NumberInput,
 	},
 	props      : {
 		errors : Object,
-        video: Object,
+		video: Object,
 	},
 	data()
 	{
 		return {
 			form: useForm({
-                _method: 'PATCH',
-				title       : this.video.title,
-				description : this.video.description,
-				file        : null,
-				gifFrom     : 0,
-				gifTo       : 0,
+				_method: 'PATCH',
+				title: this.video.title,
+				description: this.video.description,
+				file: null,
+				gifFrom: 0,
+				gifTo: 0,
+				duration: null,
 			}),
 			videoSource   : null,
 			videoDuration : null,
@@ -193,7 +221,7 @@ export default {
 	methods: {
 		storeVideo()
 		{
-			this.form.post('/dashboard/videos/' + this.video.id , this.form);
+			this.form.post('/dashboard/videos/' + this.video.id, this.form);
 		},
 
 		openFileExplorer()
@@ -228,6 +256,7 @@ export default {
             this.$nextTick(() => {
                 const loaded = data => {
                     this.videoDuration = Math.round(data.target.duration * 10) / 10;
+                    this.form.duration = Math.round(data.target.duration * 10) / 10;
                     this.$refs.videoPreviewElement.removeEventListener('loadedmetadata', loaded)
                 };
 

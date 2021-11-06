@@ -19,9 +19,30 @@
             <!-- Login form -->
             <div>
                 <form @submit.prevent="submit">
-                    <input v-model="form.email" type="email">
-                    <input v-model="form.password" type="password">
-                    <input v-model="form.remember" type="checkbox">
+
+                    <div>
+                        <label>Email</label>
+                        <input v-model="form.email" type="email">
+                    </div>
+
+                    <div>
+                        <label>Password</label>
+                        <input v-model="form.password" type="password">
+                    </div>
+
+                    <div>
+                        <label>Remember me</label>
+                        <input v-model="form.remember" type="checkbox">
+                    </div>
+
+                    <div>
+                        <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                            Forgot your password?
+                        </Link>
+
+                        <button :disabled="form.processing">Login</button>
+                    </div>
+
                 </form>
             </div>
 
@@ -32,7 +53,12 @@
 
 <script>
 
+import { Link } from '@inertiajs/inertia-vue3'
+
 export default {
+    components:{
+        Link,
+    },
     props: {
         canResetPassword: Boolean,
         status: String,
