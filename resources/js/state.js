@@ -3,10 +3,8 @@ import { reactive } from "@vue/reactivity";
 class State{
     constructor() {
         this.state = reactive({
-            darkMode : true
+            darkMode : false,
         });
-
-        document.body.classList.add('dark')
     }
     
     setTheme(theme) {
@@ -24,7 +22,7 @@ class State{
             document.body.classList.add('dark')
             return
         }
-
+        
         document.body.classList.remove('dark')
     }
 }
