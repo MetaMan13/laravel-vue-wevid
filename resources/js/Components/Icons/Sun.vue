@@ -1,14 +1,16 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-        :width="width" 
-        :height="height" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
-        class="feather feather-sun">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        :width="width"
+        :height="height"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-sun"
+    >
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -22,9 +24,8 @@
 </template>
 
 <script>
-
 export default {
-    name: 'Sun',
+    name: "Sun",
     props: {
         height: {
             type: Number,
@@ -32,8 +33,8 @@ export default {
         },
         width: {
             type: Number,
-            default: 18
+            default: 18,
         },
-    }
-}
+    },
+};
 </script>

@@ -4,6 +4,6 @@
 
 <script>
 export default {
-    name: 'TextArea',
-}
+    name: "TextArea",
+};
 </script>

@@ -1,14 +1,16 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-        :width="width" 
-        :height="height" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
-        class="feather feather-maximize-2">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        :width="width"
+        :height="height"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-maximize-2"
+    >
         <polyline points="15 3 21 3 21 9"></polyline>
         <polyline points="9 21 3 21 3 15"></polyline>
         <line x1="21" y1="3" x2="14" y2="10"></line>
@@ -17,9 +19,8 @@
 </template>
 
 <script>
-
 export default {
-    name: 'Maximize',
+    name: "Maximize",
     props: {
         height: {
             type: Number,
@@ -27,8 +28,8 @@ export default {
         },
         width: {
             type: Number,
-            default: 18
+            default: 18,
         },
-    }
-}
+    },
+};
 </script>

@@ -1,14 +1,16 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" 
-        :width="width" 
-        :height="height" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
-        class="feather feather-minimize-2">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        :width="width"
+        :height="height"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="feather feather-minimize-2"
+    >
         <polyline points="4 14 10 14 10 20"></polyline>
         <polyline points="20 10 14 10 14 4"></polyline>
         <line x1="14" y1="10" x2="21" y2="3"></line>
@@ -17,9 +19,8 @@
 </template>
 
 <script>
-
 export default {
-    name: 'Minimize',
+    name: "Minimize",
     props: {
         height: {
             type: Number,
@@ -27,8 +28,8 @@ export default {
         },
         width: {
             type: Number,
-            default: 18
+            default: 18,
         },
-    }
-}
+    },
+};
 </script>

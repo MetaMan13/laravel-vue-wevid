@@ -5,14 +5,11 @@
 </template>
 
 <script>
-
-import UserDashboard from './../Layouts/UserDashboard.vue'
+import UserDashboard from "./../Layouts/UserDashboard.vue";
 
 export default {
-    name: 'Settings',
+    name: "Settings",
     layout: UserDashboard,
-    components: {
-
-    },
-}
+    components: {},
+};
 </script>
