@@ -72,37 +72,29 @@
 
                 <div class="flex flex-col">
                     <label class="text-sm mb-1">Email</label>
-                    <!-- <input v-model="form.email" type="email" class="dark:bg-gray-700 bg-gray-50 border border-gray-300 dark:border-gray-600 rounded-md focus:border-green-500 focus:ring-green-500 dark:focus:ring-green-100 dark:focus:border-green-100 dark:focus:border-green-300 dark:focus:ring-green-300 placeholder-gray-500 dark:placeholder-gray-400" placeholder="Your email address"> -->
-                    <text-input v-model="form.email" type="email"></text-input>
+                    <text-input
+                        v-model:modelValue="form.email"
+                        type="email"
+                        placeholder="Your email address"
+                    ></text-input>
 
-                    <div v-if="errors.email" class="mt-1">
-                        <p class="text-sm text-red-500">{{ errors.email }}</p>
+                    <div v-if="errors.email" class="mt-1.5">
+                        <p class="text-sm text-red-500 dark:text-red-400">
+                            {{ errors.email }}
+                        </p>
                     </div>
                 </div>
 
                 <div class="flex flex-col">
                     <label class="text-sm mb-1">Password</label>
-                    <input
-                        v-model="form.password"
+                    <text-input
+                        v-model:modelValue="form.password"
                         type="password"
-                        class="
-                            dark:bg-gray-700
-                            bg-gray-50
-                            border border-gray-300
-                            dark:border-gray-600
-                            rounded-md
-                            focus:border-green-500 focus:ring-green-500
-                            dark:focus:ring-green-100
-                            dark:focus:border-green-300
-                            dark:focus:ring-green-300
-                            placeholder-gray-500
-                            dark:placeholder-gray-400
-                        "
-                        placeholder="Your password"
-                    />
+                        placeholder="Enter password"
+                    ></text-input>
 
-                    <div v-if="errors.password" class="mt-1">
-                        <p class="text-sm text-red-500">
+                    <div v-if="errors.password" class="mt-1.5">
+                        <p class="text-sm text-red-500 dark:text-red-400">
                             {{ errors.password }}
                         </p>
                     </div>

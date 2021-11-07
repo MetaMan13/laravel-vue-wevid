@@ -1,5 +1,7 @@
 <template>
     <input
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         :type="type"
         :placeholder="placeholder"
         class="
@@ -23,6 +25,7 @@
 export default {
     name: "TextInput",
     props: {
+        modelValue: String,
         placeholder: {
             type: String,
             default: "Placeholder text",

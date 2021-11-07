@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use FFMpeg\FFMpeg;
+use App\Models\Gif;
 use Inertia\Inertia;
 use App\Models\Video;
+use App\Jobs\CreateGif;
 use Illuminate\Support\Str;
 use FFMpeg\Format\Video\X264;
 use App\Jobs\CreateThumbnail;
@@ -19,14 +21,12 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
-use App\Jobs\CreateGif;
-use App\Models\Gif;
 
 class VideoController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $request->user()->load(['videos' => function($query){
+        $request->user()->load(['videos' => function ($query) {
             $query->where('is_processed', 1);
         }, 'videos.thumbnail', 'videos.gif']);
 
@@ -79,8 +79,7 @@ class VideoController extends Controller
     {
         $data = $request->validated();
 
-        if($request->file('file'))
-        {
+        if ($request->file('file')) {
             $path = base_path('storage/app/public/');
             $fileName = Str::random(16) . '.' . $request->file('file')->extension();
             $ffmpeg = FFMpeg::create();
@@ -94,7 +93,7 @@ class VideoController extends Controller
                     'is_processed' => false,
                 ])
                 ->all();
-            
+
             // Delete thumbnail, gif and video
             // Should be extracted the file deletions
             File::delete($video->path . $video->file_name);
@@ -104,7 +103,7 @@ class VideoController extends Controller
             $thumbnail = $video->thumbnail()->get()->first();
             File::delete($thumbnail->path . $thumbnail->file_name);
             $thumbnail->delete();
-            
+
             CreateThumbnail::dispatch($video);
             CreateGif::dispatch($video, $request['gifFrom'], $request['gifTo']);
         }
