@@ -26,3 +26,7 @@
 .dynamic-h-screen{
     height:calc(100vh - 3rem)!important;
 }
+
+input:checked{
+    @apply border-red-500;
+}

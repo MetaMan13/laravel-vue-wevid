@@ -2,22 +2,22 @@
 <div class="flex flex-col justify-center items-center">
     <div class="flex justify-center items-center">
     <span class="">
-        <sun></sun>
+        <sun :width="20" :height="20"></sun>
     </span>
     <!-- Switch Container -->
     <div
-        :class="{ 'bg-green-600': toggleActive}"
-        class="w-14 h-7 flex items-center bg-gray-300 rounded-full mx-3 px-1"
+        :class="{ 'bg-gray-600': $state.darkMode}"
+        class="w-14 h-7 flex items-center bg-gray-100 rounded-full mx-3 px-1 border border-gray-200 dark:border-gray-500"
         @click="handleToggleActive"
     >
     <!-- Switch -->
     <div
-        class="bg-white w-5 h-5 rounded-full shadow-md transform"
-        :class="{ 'translate-x-7': toggleActive}"
+        class="bg-white dark:bg-gray-800 w-5 h-5 rounded-full shadow-md transform"
+        :class="{ 'translate-x-7': $state.darkMode}"
         ></div>
     </div>
     <span class="">
-        <moon class="transform rotate-12"></moon>
+        <moon :width="20" :height="20" class="transform rotate-12"></moon>
     </span>
 </div>
 
@@ -46,6 +46,7 @@ import Moon from './../Icons/Moon.vue'
 export default {
     name: 'Toggle',
     components: { Moon, Sun },
+    emits: ['theme-toggled'],
     data(){
         return{
             toggleActive: false
@@ -53,8 +54,8 @@ export default {
     },
     methods: {
         handleToggleActive(){
-            this.toggleActive = !this.toggleActive
+            this.$state.darkMode = !this.$state.darkMode
         }
-    }
+    },
 }
 </script>
