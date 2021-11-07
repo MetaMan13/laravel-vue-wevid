@@ -37,7 +37,7 @@
                     justify-center
                     py-6
                     text-center
-                    md:py-8
+                    md:py-6
                 "
             >
                 <div>
@@ -66,7 +66,7 @@
                     dark:border-gray-800
                 "
             >
-                <div class="flex justify-end mb-2">
+                <div class="flex justify-end">
                     <toggle></toggle>
                 </div>
 
