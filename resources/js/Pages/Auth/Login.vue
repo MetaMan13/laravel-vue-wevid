@@ -1,70 +1,29 @@
 <template>
     <!-- Master Guest layout START -->
     <div
-        class="
-            w-full
-            h-screen
-            bg-gray-100
-            dark:bg-gray-900
-            flex flex-col
-            items-center
-            justify-center
-            text-gray-600
-            dark:text-gray-200
-        "
+        class="w-full h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center text-gray-600 dark:text-gray-200"
     >
         <!-- <div class="bg-white dark:bg-gray-800 w-full h-20 flex items-center justify-center">
             <p>Test 123</p>
-        </div> -->
+        </div>-->
 
         <div
-            class="
-                dark:bg-gray-900
-                w-full
-                flex flex-col
-                rounded-md
-                md:gap-0
-                sm:max-w-sm
-                md:max-w-md
-            "
+            class="dark:bg-gray-900 w-full flex flex-col rounded-md md:gap-0 sm:max-w-sm md:max-w-md"
         >
             <!-- Application Logo -->
-            <div
-                class="
-                    flex
-                    gap-1
-                    items-center
-                    justify-center
-                    py-6
-                    text-center
-                    md:py-6
-                "
-            >
+            <div class="flex gap-1 items-center justify-center py-6 text-center md:py-6">
                 <div>
                     <h3 class="font-semibold text-3xl select-none">Wevid</h3>
                 </div>
                 <div>
-                    <feather :width="34" :height="34" class=""></feather>
+                    <feather :width="34" :height="34" class></feather>
                 </div>
             </div>
 
             <!-- Login form -->
             <form
                 @submit.prevent="submit"
-                class="
-                    px-4
-                    bg-white
-                    dark:bg-gray-800
-                    py-6
-                    flex flex-col
-                    gap-2
-                    md:py-6 md:px-6
-                    lg:py-8 lg:px-8
-                    md:gap-4 md:rounded-md
-                    shadow-sm
-                    border border-gray-100
-                    dark:border-gray-800
-                "
+                class="px-4 bg-white dark:bg-gray-800 py-6 flex flex-col gap-2 md:py-6 md:px-6 lg:py-8 lg:px-8 md:gap-4 md:rounded-md shadow-sm border border-gray-100 dark:border-gray-800"
             >
                 <div class="flex justify-end">
                     <toggle></toggle>
@@ -79,9 +38,7 @@
                     ></text-input>
 
                     <div v-if="errors.email" class="mt-1.5">
-                        <p class="text-sm text-red-500 dark:text-red-400">
-                            {{ errors.email }}
-                        </p>
+                        <p class="text-sm text-red-500 dark:text-red-400">{{ errors.email }}</p>
                     </div>
                 </div>
 
@@ -94,9 +51,7 @@
                     ></text-input>
 
                     <div v-if="errors.password" class="mt-1.5">
-                        <p class="text-sm text-red-500 dark:text-red-400">
-                            {{ errors.password }}
-                        </p>
+                        <p class="text-sm text-red-500 dark:text-red-400">{{ errors.password }}</p>
                     </div>
                 </div>
 
@@ -106,57 +61,22 @@
                         <input
                             v-model="form.remember"
                             type="checkbox"
-                            class="
-                                text-green-500
-                                dark:bg-gray-700
-                                border border-gray-400
-                                dark:ring-transparent dark:text-gray-900
-                                focus:text-green-500
-                                dark:focus:text-gray-800
-                                focus:ring-green-500
-                                dark:focus:ring-transparent
-                                dark:focus:border-transparent
-                                dark:focus:outline-none
-                                rounded-sm
-                            "
+                            class="text-green-500 dark:bg-gray-700 border border-gray-400 dark:ring-transparent dark:text-gray-900 focus:text-green-500 dark:focus:text-gray-800 focus:ring-green-500 dark:focus:ring-transparent dark:focus:border-transparent dark:focus:outline-none rounded-sm"
                         />
                     </div>
 
                     <Link
                         v-if="canResetPassword"
                         :href="route('password.request')"
-                        class="
-                            underline
-                            text-sm text-gray-600
-                            hover:text-gray-900
-                            dark:text-gray-400 dark:hover:text-gray-300
-                        "
-                    >
-                        Forgot your password?
-                    </Link>
+                        class="underline text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+                    >Forgot your password?</Link>
                 </div>
 
                 <div class="flex flex-col mt-2">
                     <button
                         :disabled="form.processing"
-                        class="
-                            bg-green-500
-                            hover:bg-green-600
-                            dark:bg-green-400
-                            dark:text-green-900
-                            dark:hover:bg-green-300
-                            text-white
-                            px-2
-                            py-2
-                            rounded-md
-                            font-semibold
-                            transition transition-all
-                            duration-150
-                            ease-in-out
-                        "
-                    >
-                        Login
-                    </button>
+                        class="bg-green-500 hover:bg-green-600 dark:bg-green-400 dark:text-green-900 dark:hover:bg-green-300 text-white px-2 py-2 rounded-md font-semibold transition transition-all duration-150 ease-in-out"
+                    >Login</button>
                 </div>
             </form>
         </div>

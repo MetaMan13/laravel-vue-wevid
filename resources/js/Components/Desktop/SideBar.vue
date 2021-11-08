@@ -4,16 +4,7 @@
             'lg:w-56 xl:w-60': sideBarMenuOpen,
             'lg:w-24': !sideBarMenuOpen,
         }"
-        class="
-            hidden
-            bg-white
-            border-r border-gray-200
-            shadow-sm
-            overflow-y-auto
-            lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min
-            dynamic-h-screen
-            lg:max-h-auto lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4
-        "
+        class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-auto lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min dynamic-h-screen lg:max-h-auto lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4"
     >
         <!-- Side Bar Menu Action Buttons -->
         <div
@@ -23,35 +14,17 @@
             <!-- Darkmode toggle -->
             <template v-if="darkTheme">
                 <div
-                    class="
-                        bg-white
-                        px-2
-                        py-2
-                        border border-gray-200
-                        shadow-sm
-                        rounded-md
-                        hover:bg-gray-50
-                        cursor-pointer
-                    "
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
                 >
-                    <sun :height="18" :width="18"> </sun>
+                    <sun :height="18" :width="18"></sun>
                 </div>
             </template>
 
             <template v-else>
                 <div
-                    class="
-                        bg-white
-                        px-2
-                        py-2
-                        border border-gray-200
-                        shadow-sm
-                        rounded-md
-                        hover:bg-gray-50
-                        cursor-pointer
-                    "
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
                 >
-                    <moon :height="18" :width="18"> </moon>
+                    <moon :height="18" :width="18"></moon>
                 </div>
             </template>
 
@@ -59,46 +32,18 @@
             <template v-if="sideBarMenuOpen">
                 <div
                     @click="closeSideBar"
-                    class="
-                        bg-white
-                        px-2
-                        py-2
-                        border border-gray-200
-                        shadow-sm
-                        rounded-md
-                        hover:bg-gray-50
-                        cursor-pointer
-                    "
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
                 >
-                    <minimize
-                        :height="18"
-                        :width="18"
-                        class="transform rotate-45"
-                    >
-                    </minimize>
+                    <minimize :height="18" :width="18" class="transform rotate-45"></minimize>
                 </div>
             </template>
 
             <template v-else>
                 <div
                     @click="openSideBar"
-                    class="
-                        bg-white
-                        px-2
-                        py-2
-                        border border-gray-200
-                        shadow-sm
-                        rounded-md
-                        hover:bg-gray-50
-                        cursor-pointer
-                    "
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
                 >
-                    <maximize
-                        :height="18"
-                        :width="18"
-                        class="transform rotate-45"
-                    >
-                    </maximize>
+                    <maximize :height="18" :width="18" class="transform rotate-45"></maximize>
                 </div>
             </template>
         </div>
@@ -107,10 +52,7 @@
         <div class="mt-4">
             <!-- Side Menu Links -->
             <div>
-                <ul
-                    v-bind:class="{ 'items-center': !sideBarMenuOpen }"
-                    class="flex flex-col"
-                >
+                <ul v-bind:class="{ 'items-center': !sideBarMenuOpen }" class="flex flex-col">
                     <li>
                         <side-bar-link
                             :href="route('dashboard')"
@@ -120,7 +62,7 @@
                             }"
                         >
                             <template v-slot:icon>
-                                <home :height="18" :width="18"> </home>
+                                <home :height="18" :width="18"></home>
                             </template>
                             <template v-slot:text>
                                 <p>Home</p>
@@ -138,8 +80,7 @@
                             }"
                         >
                             <template v-slot:icon>
-                                <video-icon :height="18" :width="18">
-                                </video-icon>
+                                <video-icon :height="18" :width="18"></video-icon>
                             </template>
                             <template v-slot:text>
                                 <p>Videos</p>
@@ -157,7 +98,7 @@
                             }"
                         >
                             <template v-slot:icon>
-                                <user :height="18" :width="18"> </user>
+                                <user :height="18" :width="18"></user>
                             </template>
                             <template v-slot:text>
                                 <p>Profile</p>
@@ -175,7 +116,7 @@
                             }"
                         >
                             <template v-slot:icon>
-                                <settings :height="18" :width="18"> </settings>
+                                <settings :height="18" :width="18"></settings>
                             </template>
                             <template v-slot:text>
                                 <p>Settings</p>
@@ -193,7 +134,7 @@
                             class="w-full"
                         >
                             <template v-slot:icon>
-                                <log-out :height="18" :width="18"> </log-out>
+                                <log-out :height="18" :width="18"></log-out>
                             </template>
                             <template v-slot:text>
                                 <p>Log out</p>

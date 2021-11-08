@@ -27,9 +27,7 @@
                 class="ml-4"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-            >
-                Confirm
-            </BreezeButton>
+            >Confirm</BreezeButton>
         </div>
     </form>
 </template>

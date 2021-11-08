@@ -6,13 +6,7 @@
         :max="max"
         :step="step"
         @input="$emit('update:modelValue', $event.target.value)"
-        class="
-            resize-none
-            border border-gray-200
-            rounded-md
-            focus:ring-transpatent focus:ring-0 focus:border-gray-300
-            placeholder-gray-400
-        "
+        class="resize-none border border-gray-200 rounded-md focus:ring-transpatent focus:ring-0 focus:border-gray-300 placeholder-gray-400"
     />
 </template>
 

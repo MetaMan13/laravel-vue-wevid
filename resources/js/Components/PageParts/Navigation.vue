@@ -1,30 +1,11 @@
 <template>
     <!-- Desktop Navigation START -->
     <div
-        class="
-            fixed
-            top-0
-            left-0
-            z-50
-            w-full
-            h-12
-            bg-white
-            px-2
-            flex
-            items-center
-            justify-between
-            border-b border-gray-200
-            md:px-4
-        "
+        class="fixed top-0 left-0 z-50 w-full h-12 bg-white px-2 flex items-center justify-between border-b border-gray-200 md:px-4"
     >
         <!-- Logo START -->
         <div class="flex gap-1 items-center">
-            <feather
-                :height="22"
-                :width="22"
-                class="text-green-500 transform -rotate-90"
-            >
-            </feather>
+            <feather :height="22" :width="22" class="text-green-500 transform -rotate-90"></feather>
             <h3 class="font-semibold text-lg">Wevid</h3>
         </div>
         <!-- Logo END -->
@@ -32,11 +13,21 @@
         <!-- Menu items START -->
         <div class="hidden">
             <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 2</a></li>
-                <li><a href="#">Link 3</a></li>
-                <li><a href="#">Link 4</a></li>
-                <li><a href="#">Link 5</a></li>
+                <li>
+                    <a href="#">Link 1</a>
+                </li>
+                <li>
+                    <a href="#">Link 2</a>
+                </li>
+                <li>
+                    <a href="#">Link 3</a>
+                </li>
+                <li>
+                    <a href="#">Link 4</a>
+                </li>
+                <li>
+                    <a href="#">Link 5</a>
+                </li>
             </ul>
         </div>
         <!-- Menu items END -->
@@ -51,12 +42,7 @@
         <div class="lg:hidden">
             <!-- Hamburger Icon START -->
             <div>
-                <hamburger
-                    :width="22"
-                    :height="22"
-                    @click="hamburgerMenuOpen = true"
-                >
-                </hamburger>
+                <hamburger :width="22" :height="22" @click="hamburgerMenuOpen = true"></hamburger>
             </div>
             <!-- Hamburger Icon END -->
 
@@ -66,12 +52,7 @@
                 class="absolute top-0 left-0 z-50 h-screen w-full bg-white"
             >
                 <p>Hamburger Menu Content</p>
-                <p
-                    @click="hamburgerMenuOpen = false"
-                    class="text-lg font-semibold"
-                >
-                    CLOSE
-                </p>
+                <p @click="hamburgerMenuOpen = false" class="text-lg font-semibold">CLOSE</p>
             </div>
             <!-- Absolute Part START  -->
         </div>

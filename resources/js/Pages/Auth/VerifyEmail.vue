@@ -7,10 +7,7 @@
         didn't receive the email, we will gladly send you another.
     </div>
 
-    <div
-        class="mb-4 font-medium text-sm text-green-600"
-        v-if="verificationLinkSent"
-    >
+    <div class="mb-4 font-medium text-sm text-green-600" v-if="verificationLinkSent">
         A new verification link has been sent to the email address you provided
         during registration.
     </div>
@@ -20,17 +17,14 @@
             <BreezeButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-            >
-                Resend Verification Email
-            </BreezeButton>
+            >Resend Verification Email</BreezeButton>
 
             <Link
                 :href="route('logout')"
                 method="post"
                 as="button"
                 class="underline text-sm text-gray-600 hover:text-gray-900"
-                >Log Out</Link
-            >
+            >Log Out</Link>
         </div>
     </form>
 </template>

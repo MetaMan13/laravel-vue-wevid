@@ -1,14 +1,6 @@
 <template>
     <!-- Root main layout wrapper -->
-    <div
-        class="
-            min-h-screen
-            w-full
-            bg-gray-50
-            text-gray-700
-            dark dark:bg-gray-900
-        "
-    >
+    <div class="min-h-screen w-full bg-gray-50 text-gray-700 dark dark:bg-gray-900">
         <!-- Navigation -->
         <navigation></navigation>
 
@@ -16,10 +8,7 @@
         <user-action-bar></user-action-bar>
 
         <!-- Desktop Side Bar -->
-        <side-bar
-            @sideBarOpen="sideBarOpen"
-            @sideBarClosed="sideBarClosed"
-        ></side-bar>
+        <side-bar @sideBarOpen="sideBarOpen" @sideBarClosed="sideBarClosed"></side-bar>
 
         <!-- Content START -->
         <div

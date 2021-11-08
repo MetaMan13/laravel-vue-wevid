@@ -7,9 +7,7 @@
         choose a new one.
     </div>
 
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-        {{ status }}
-    </div>
+    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">{{ status }}</div>
 
     <BreezeValidationErrors class="mb-4" />
 
@@ -31,9 +29,7 @@
             <BreezeButton
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-            >
-                Email Password Reset Link
-            </BreezeButton>
+            >Email Password Reset Link</BreezeButton>
         </div>
     </form>
 </template>
