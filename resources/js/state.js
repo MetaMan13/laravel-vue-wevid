@@ -5,6 +5,8 @@ class State {
         this.state = reactive({
             darkMode: false,
         });
+
+        this.state.darkMode ? this.addDark() : this.removeDark()
     }
 
     setTheme(theme) {
