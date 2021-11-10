@@ -1,9 +1,14 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use App\Http\Controllers\VideoController;
+
+// Dashboard imports
+use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
+use App\Http\Controllers\Dashboard\SettingsController as DashboardSettingsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,40 +34,55 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/dashboard/video', function()
-// {
-//     return Inertia::render('Video');
-// })->name('dashboard.video.index');
 
 /*
     Dashboard Video Routes || START
 */
 
-    Route::prefix('/dashboard/videos')
-        ->middleware(['auth'])
-        ->group(function()
-        {
-            Route::get('/', [VideoController::class, 'index'])->name('dashboard.videos.index');
-            Route::post('/', [VideoController::class, 'store'])->name('dashboard.videos.store');
-            Route::get('/create', [VideoController::class, 'create'])->name('dashboard.videos.create');
-            Route::get('/{video}', [VideoController::class, 'show'])->name('dashboard.videos.show');
-            Route::patch('/{video}', [VideoController::class, 'update'])->name('dashboard.videos.update');
-            Route::delete('/{video}', [VideoController::class, 'destroy'])->name('dashboard.videos.destroy');
-            Route::get('/{video}/edit', [VideoController::class, 'edit'])->name('dashboard.videos.edit');
-        });
+Route::prefix('/dashboard/videos')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('/', [VideoController::class, 'index'])->name('dashboard.videos.index');
+        Route::post('/', [VideoController::class, 'store'])->name('dashboard.videos.store');
+        Route::get('/create', [VideoController::class, 'create'])->name('dashboard.videos.create');
+        Route::get('/{video}', [VideoController::class, 'show'])->name('dashboard.videos.show');
+        Route::patch('/{video}', [VideoController::class, 'update'])->name('dashboard.videos.update');
+        Route::delete('/{video}', [VideoController::class, 'destroy'])->name('dashboard.videos.destroy');
+        Route::get('/{video}/edit', [VideoController::class, 'edit'])->name('dashboard.videos.edit');
+    });
 
 /*
     Dashboard Video Routes || END
 */
 
-Route::get('/dashboard/profile', function()
-{
-    return Inertia::render('Profile');
-})->name('dashboard.profile.index');
 
-Route::get('/dashboard/settings', function()
-{
-    return Inertia::render('Settings');
-})->name('dashboard.settings.index');
+/*
+    Dashboard Profile Routes || START
+*/
 
-require __DIR__.'/auth.php';
+Route::prefix('/dashboard/profile')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('/', [DashboardProfileController::class, 'index'])->name('dashboard.profile.index');
+    });
+
+/*
+    Dashboard Profile Routes || END
+*/
+
+
+/*
+    Dashboard Settings Routes || START
+*/
+
+Route::prefix('/dashboard/settings')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('/', [DashboardSettingsController::class, 'index'])->name('dashboard.settings.index');
+    });
+
+/*
+    Dashboard Settings Routes || END
+*/
+
+require __DIR__ . '/auth.php';

@@ -3,7 +3,7 @@ import { reactive } from "@vue/reactivity";
 class State {
     constructor() {
         this.state = reactive({
-            darkMode: false,
+            darkMode: true,
         });
 
         this.state.darkMode ? this.addDark() : this.removeDark()
