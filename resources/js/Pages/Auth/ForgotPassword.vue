@@ -17,6 +17,13 @@
             </p>
         </div>
 
+        <div
+            v-if="status"
+            class="bg-gray-50 dark:bg-gray-700 px-4 py-4 rounded-md border border-gray-300 dark:border-gray-600"
+        >
+            <p class="text-sm">{{ status }}</p>
+        </div>
+
         <div class="flex flex-col mt-2">
             <label class="text-sm mb-1">Email</label>
             <text-input
