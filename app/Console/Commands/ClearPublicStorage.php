@@ -46,5 +46,6 @@ class ClearPublicStorage extends Command
         // }
         $files = new Filesystem();
         $files->cleanDirectory('storage/app/public');
+        $this->line('Public storage cleared!', 'fg=green');
     }
 }

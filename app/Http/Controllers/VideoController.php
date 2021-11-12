@@ -21,16 +21,26 @@ use App\Http\Requests\Video\ShowRequest;
 use App\Http\Requests\Video\EditRequest;
 use App\Http\Requests\Video\UpdateRequest;
 use App\Http\Requests\Video\DestoryRequest;
+use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $request->user()->load(['videos' => function ($query) {
-            $query->where('is_processed', 1);
-        }, 'videos.thumbnail', 'videos.gif']);
+        $videos = Video::with([
+            'thumbnail' => function ($query) {
+                $query->select('video_id', 'file_name');
+            }, 'gif' => function ($query) {
+                $query->select('video_id', 'file_name');
+            }
+        ])
+            ->where('user_id', '=', $request->user()->id)
+            ->where('is_processed', '=', true)
+            ->get();
 
-        return Inertia::render('Video/Index');
+        return Inertia::render('Video/Index', [
+            'videos' => $videos
+        ]);
     }
 
     public function create()
