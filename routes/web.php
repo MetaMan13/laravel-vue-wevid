@@ -64,6 +64,12 @@ Route::prefix('/dashboard/profile')
     ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardProfileController::class, 'index'])->name('dashboard.profile.index');
+        Route::post('/', [DashboardProfileController::class, 'store'])->name('dashboard.profile.store');
+        Route::get('/create', [DashboardProfileController::class, 'create'])->name('dashboard.profile.create');
+        Route::get('/{user}', [DashboardProfileController::class, 'show'])->name('dashboard.profile.show');
+        Route::patch('/{user}', [DashboardProfileController::class, 'update'])->name('dashboard.profile.update');
+        Route::delete('/{user}', [DashboardProfileController::class, 'destroy'])->name('dashboard.profile.destroy');
+        Route::get('/{user}/edit', [DashboardProfileController::class, 'edit'])->name('dashboard.profile.edit');
     });
 
 /*

@@ -92,7 +92,7 @@
 
                     <li>
                         <side-bar-link
-                            :href="route('dashboard.profile.index')"
+                            :href="route('dashboard.profile.show', [auth.user])"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :class="{
                                 '':

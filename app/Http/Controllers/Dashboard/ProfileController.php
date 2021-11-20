@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Profile\IndexRequest;
+use App\Http\Requests\Dashboard\Profile\CreateRequest;
+use App\Http\Requests\Dashboard\Profile\StoreRequest;
+use App\Http\Requests\Dashboard\Profile\ShowRequest;
+use App\Http\Requests\Dashboard\Profile\EditRequest;
+use App\Http\Requests\Dashboard\Profile\UpdateRequest;
+use App\Http\Requests\Dashboard\Profile\DestroyRequest;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -15,7 +23,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Profile/Index');
+        // return Inertia::render('Dashboard/Profile/Index');
     }
 
     /**
@@ -45,9 +53,11 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ShowRequest $request, User $user)
     {
-        //
+        return Inertia::render('Dashboard/Profile/Show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -56,9 +66,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(EditRequest $request, User $user)
     {
-        //
+        return Inertia::render('Dashboard/Profile/Edit');
     }
 
     /**
