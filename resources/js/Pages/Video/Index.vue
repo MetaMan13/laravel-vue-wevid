@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import UserDashboard from "./../../Layouts/UserDashboard.vue";
+import UserDashboard from "@Layouts/UserDashboard.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import Movie from "./../../Components/Icons/Movie.vue";
 import Edit from "./../../Components/Icons/Edit.vue";

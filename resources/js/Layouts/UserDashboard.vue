@@ -8,7 +8,7 @@
         <user-action-bar></user-action-bar>
 
         <!-- Desktop Side Bar -->
-        <side-bar @sideBarOpen="sideBarOpen" @sideBarClosed="sideBarClosed"></side-bar>
+        <side-bar @sideBarOpen="sideBarOpen" @sideBarClosed="sideBarClosed" :auth="auth"></side-bar>
 
         <!-- Content START -->
         <div
@@ -37,6 +37,9 @@ export default {
         Navigation,
         UserActionBar,
         SideBar,
+    },
+    props: {
+        auth: Object,
     },
     data() {
         return {

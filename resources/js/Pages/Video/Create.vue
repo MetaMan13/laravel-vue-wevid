@@ -235,7 +235,7 @@
 
 <script>
 import { useForm } from "@inertiajs/inertia-vue3";
-import UserDashboard from "./../../Layouts/UserDashboard.vue";
+import UserDashboard from "@Layouts/UserDashboard.vue";
 import Upload from "./../../Components/Icons/Upload.vue";
 import Movie from "./../../Components/Icons/Movie.vue";
 import Trash from "./../../Components/Icons/Trash.vue";

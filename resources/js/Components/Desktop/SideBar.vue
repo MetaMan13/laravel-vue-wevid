@@ -9,12 +9,13 @@
         <!-- Side Bar Menu Action Buttons -->
         <div
             v-bind:class="{ 'flex-col gap-2 items-center': !sideBarMenuOpen }"
-            class="w-full flex justify-between pb-4 border-b border-gray-200"
+            class="w-full flex justify-between pb-4 border-b"
         >
             <!-- Darkmode toggle -->
-            <template v-if="darkTheme">
+            <template v-if="!$state.darkMode">
                 <div
                     class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
+                    @click="$state.darkMode = true"
                 >
                     <sun :height="18" :width="18"></sun>
                 </div>
@@ -23,6 +24,7 @@
             <template v-else>
                 <div
                     class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
+                    @click="$state.darkMode = false"
                 >
                     <moon :height="18" :width="18"></moon>
                 </div>
@@ -49,7 +51,7 @@
         </div>
 
         <!-- Side Bar Content -->
-        <div class="mt-4">
+        <div class="mt-5">
             <!-- Side Menu Links -->
             <div>
                 <ul v-bind:class="{ 'items-center': !sideBarMenuOpen }" class="flex flex-col">
@@ -58,7 +60,7 @@
                             :href="route('dashboard')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :class="{
-                                'bg-gray-50': $page.url === '/dashboard',
+                                '': $page.url === '/dashboard',
                             }"
                         >
                             <template v-slot:icon>
@@ -75,7 +77,7 @@
                             :href="route('dashboard.videos.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :class="{
-                                'bg-gray-50':
+                                '':
                                     $page.url.startsWith('/dashboard/videos'),
                             }"
                         >
@@ -93,7 +95,7 @@
                             :href="route('dashboard.profile.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :class="{
-                                'bg-gray-50':
+                                '':
                                     $page.url === '/dashboard/profile',
                             }"
                         >
@@ -111,7 +113,7 @@
                             :href="route('dashboard.settings.index')"
                             :sideBarMenuOpen="sideBarMenuOpen"
                             :class="{
-                                'bg-gray-50':
+                                '':
                                     $page.url === '/dashboard/settings',
                             }"
                         >
@@ -173,11 +175,17 @@ export default {
         User,
         VideoIcon,
     },
+    props: {
+        auth: Object,
+    },
     data() {
         return {
             sideBarMenuOpen: true,
             darkTheme: false,
         };
+    },
+    created() {
+        console.log(this.auth.user.name);
     },
     methods: {
         closeSideBar() {

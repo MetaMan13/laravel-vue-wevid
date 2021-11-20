@@ -1,14 +1,13 @@
 <template>
     <div>
-        <p>Video SHOW</p>
+        <h1>Hello 1234</h1>
     </div>
 </template>
 
 <script>
-import UserDashboard from "@Layouts/UserDashboard.vue";
+import UserDashboard from "@Layouts/UserDashboard";
 
 export default {
     layout: UserDashboard,
-    components: {},
 };
 </script>

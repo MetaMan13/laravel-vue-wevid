@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Auth from "Layouts/Auth";
+import Auth from "@Layouts/Auth";
 import Toggle from "Shared/Toggle";
 import TextInput from "Forms/TextInput.vue";
 

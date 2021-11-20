@@ -15,7 +15,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Profile');
+        return Inertia::render('Dashboard/Profile/Index');
     }
 
     /**

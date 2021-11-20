@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import Auth from "Layouts/Auth";
+import Auth from "@Layouts/Auth";
 import { Link } from "@inertiajs/inertia-vue3";
 import Feather from "../../Components/Icons/Feather.vue";
 import Toggle from "../../Components/Shared/Toggle.vue";

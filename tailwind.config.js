@@ -15,6 +15,15 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            maxWidth: {
+                '24': '6rem',
+                '56': '14rem',
+                '60': '15rem'
+            },
+
+            margin: {
+                '22': '5.5rem',
+            },
         },
     },
 

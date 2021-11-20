@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Auth from "Layouts/Auth";
+import Auth from "@Layouts/Auth";
 import Toggle from "../../Components/Shared/Toggle.vue";
 import TextInput from "Forms/TextInput.vue";
 
