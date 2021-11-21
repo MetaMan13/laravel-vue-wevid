@@ -1,7 +1,7 @@
 <template>
     <!-- Desktop Navigation START -->
     <div
-        class="fixed top-0 left-0 z-50 w-full h-12 bg-white px-2 flex items-center justify-between border-b border-gray-200 md:px-4"
+        class="fixed top-0 left-0 z-50 w-full h-12 bg-white px-2 flex items-center justify-between border-b border-gray-200 md:px-4 dark:bg-gray-800 dark:border-gray-700"
     >
         <!-- Logo START -->
         <div class="flex gap-1 items-center">

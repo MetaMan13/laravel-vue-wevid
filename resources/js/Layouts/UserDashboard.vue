@@ -1,6 +1,6 @@
 <template>
     <!-- Root main layout wrapper -->
-    <div class="min-h-screen w-full bg-gray-50 text-gray-700 dark dark:bg-gray-900">
+    <div class="min-h-screen w-full bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-300">
         <!-- Navigation -->
         <navigation></navigation>
 

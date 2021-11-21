@@ -4,18 +4,18 @@
             'lg:w-56 xl:w-60': sideBarMenuOpen,
             'lg:w-24': !sideBarMenuOpen,
         }"
-        class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-auto lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min dynamic-h-screen lg:max-h-auto lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4"
+        class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-auto lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min dynamic-h-screen lg:max-h-auto lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4 dark:bg-gray-800 dark:border-gray-700"
     >
         <!-- Side Bar Menu Action Buttons -->
         <div
-            v-bind:class="{ 'flex-col gap-2 items-center': !sideBarMenuOpen }"
-            class="w-full flex justify-between pb-4 border-b"
+            :class="{ 'flex-col gap-2 items-center': !sideBarMenuOpen }"
+            class="w-full flex justify-between pb-4 border-b dark:border-gray-600"
         >
             <!-- Darkmode toggle -->
             <template v-if="!$state.darkMode">
                 <div
                     class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
-                    @click="$state.darkMode = true"
+                    @click="this.$state.darkMode = true"
                 >
                     <sun :height="18" :width="18"></sun>
                 </div>
@@ -23,8 +23,8 @@
 
             <template v-else>
                 <div
-                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
-                    @click="$state.darkMode = false"
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer dark:bg-gray-700 dark:border-gray-600"
+                    @click="this.$state.darkMode = false"
                 >
                     <moon :height="18" :width="18"></moon>
                 </div>
@@ -34,7 +34,7 @@
             <template v-if="sideBarMenuOpen">
                 <div
                     @click="closeSideBar"
-                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer dark:bg-gray-700 dark:border-gray-600"
                 >
                     <minimize :height="18" :width="18" class="transform rotate-45"></minimize>
                 </div>
@@ -43,7 +43,7 @@
             <template v-else>
                 <div
                     @click="openSideBar"
-                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer"
+                    class="bg-white px-2 py-2 border border-gray-200 shadow-sm rounded-md hover:bg-gray-50 cursor-pointer dark:bg-gray-700 dark:border-gray-600"
                 >
                     <maximize :height="18" :width="18" class="transform rotate-45"></maximize>
                 </div>
