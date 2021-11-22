@@ -8,6 +8,7 @@ use App\Http\Controllers\VideoController;
 // Dashboard imports
 use App\Http\Controllers\Dashboard\ProfileController as DashboardProfileController;
 use App\Http\Controllers\Dashboard\SettingsController as DashboardSettingsController;
+use App\Http\Controllers\Dashboard\VideoController as DashboardVideoController;
 
 
 /*
@@ -42,13 +43,13 @@ Route::get('/dashboard', function () {
 Route::prefix('/dashboard/videos')
     ->middleware(['auth', 'verified'])
     ->group(function () {
-        Route::get('/', [VideoController::class, 'index'])->name('dashboard.videos.index');
-        Route::post('/', [VideoController::class, 'store'])->name('dashboard.videos.store');
-        Route::get('/create', [VideoController::class, 'create'])->name('dashboard.videos.create');
-        Route::get('/{video}', [VideoController::class, 'show'])->name('dashboard.videos.show');
-        Route::patch('/{video}', [VideoController::class, 'update'])->name('dashboard.videos.update');
-        Route::delete('/{video}', [VideoController::class, 'destroy'])->name('dashboard.videos.destroy');
-        Route::get('/{video}/edit', [VideoController::class, 'edit'])->name('dashboard.videos.edit');
+        Route::get('/', [DashboardVideoController::class, 'index'])->name('dashboard.videos.index');
+        Route::post('/', [DashboardVideoController::class, 'store'])->name('dashboard.videos.store');
+        Route::get('/create', [DashboardVideoController::class, 'create'])->name('dashboard.videos.create');
+        Route::get('/{video}', [DashboardVideoController::class, 'show'])->name('dashboard.videos.show');
+        Route::patch('/{video}', [DashboardVideoController::class, 'update'])->name('dashboard.videos.update');
+        Route::delete('/{video}', [DashboardVideoController::class, 'destroy'])->name('dashboard.videos.destroy');
+        Route::get('/{video}/edit', [DashboardVideoController::class, 'edit'])->name('dashboard.videos.edit');
     });
 
 /*
