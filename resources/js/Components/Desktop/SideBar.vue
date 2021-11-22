@@ -184,9 +184,6 @@ export default {
             darkTheme: false,
         };
     },
-    created() {
-        console.log(this.auth.user.name);
-    },
     methods: {
         closeSideBar() {
             this.sideBarMenuOpen = false;
