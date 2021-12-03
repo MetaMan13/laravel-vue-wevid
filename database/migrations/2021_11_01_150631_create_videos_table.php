@@ -18,6 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->longText('description')->nullable()->default(null);
             $table->boolean('is_processed')->default(false);
+            $table->boolean('is_private')->default(true);
             $table->string('path');
             $table->string('file_name');
             $table->unsignedBigInteger('user_id');

@@ -206,8 +206,6 @@
                                 v-if="form.progress"
                                 class="text-gray-300"
                             >Uploading {{ form.progress.percentage }}%</p>
-                            <!-- <p class="text-gray-300 mb-4">Uplaoding 84%</p> -->
-                            <!-- <img src="/images/icons/loading.png" alt="Spinner" class="h-8 w-8 animate-spin"> -->
                         </div>
                         <button
                             :class="{

@@ -2,13 +2,13 @@
     <div
         v-bind:class="{
             'lg:w-56 xl:w-60': sideBarMenuOpen,
-            'lg:w-24': !sideBarMenuOpen,
+            'lg:w-18': !sideBarMenuOpen,
         }"
         class="hidden bg-white border-r border-gray-200 shadow-sm overflow-y-auto lg:block lg:fixed lg:top-0 lg:left-0 lg:min-w-min dynamic-h-screen lg:max-h-auto lg:z-40 lg:mt-12 lg:pt-4 lg:pb-4 lg:px-4 dark:bg-gray-800 dark:border-gray-700"
     >
         <!-- Side Bar Menu Action Buttons -->
         <div
-            :class="{ 'flex-col gap-2 items-center': !sideBarMenuOpen }"
+            :class="{ 'flex-col gap-2 items-start': !sideBarMenuOpen }"
             class="w-full flex justify-between pb-4 border-b dark:border-gray-600"
         >
             <!-- Darkmode toggle -->
@@ -54,7 +54,7 @@
         <div class="mt-5">
             <!-- Side Menu Links -->
             <div>
-                <ul v-bind:class="{ 'items-center': !sideBarMenuOpen }" class="flex flex-col">
+                <ul v-bind:class="{ 'items-start': !sideBarMenuOpen }" class="flex flex-col">
                     <li>
                         <side-bar-link
                             :href="route('dashboard')"
